@@ -6,4 +6,10 @@
 
     <!-- Text to display when there is no network connection [CHAR LIMIT=40]-->
     <string name="news_activity_check_network_connection">Check network connection!</string>
+
+    <!-- Title for search icon in ActionBar [CHAR LIMIT=20]-->
+    <string name="search_title">News search</string>
+
+    <!-- Hint for search widget in ActionBar [CHAR LIMIT=20] -->
+    <string name="search_hint">search</string>
 </resources>

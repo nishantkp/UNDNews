@@ -1,19 +1,24 @@
 package com.example.android.undnews;
 
 import android.app.LoaderManager;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,7 +28,7 @@ public class NewsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 1;
-    private static String SAMPLE = "https://content.guardianapis.com/search?q=apple&show-fields=thumbnail&api-key=test";
+    private static final String SAMPLE = "https://content.guardianapis.com/search?q=apple&show-fields=thumbnail&api-key=test";
     private static final String API_FIRST_PART = "https://content.guardianapis.com/search?q=";
     private static final String API_SECOND_PART = "&show-fields=thumbnail&page-size=20&show-tags=contributor&api-key=test";
 
@@ -78,12 +83,15 @@ public class NewsActivity extends AppCompatActivity
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
         checkNetworkConnectionAndInitLoader();
+
+        // Get the search intent
+        handleSearchIntent(getIntent());
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
         Log.i(LOG_TAG, "API : " + mCorrectUserQueryApi);
-        return new NewsLoader(this, SAMPLE);
+        return new NewsLoader(this, mCorrectUserQueryApi);
     }
 
     @Override
@@ -137,12 +145,51 @@ public class NewsActivity extends AppCompatActivity
         return API_FIRST_PART + query + API_SECOND_PART;
     }
 
+    // Inflate the actionbar with search menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        assert searchManager != null;
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
+    }
+
     // This method is called to refresh the content of loader
-    private void refreshContent(){
-        // Destroy the loader manager in order to create a new loader to load new batch of data
+    private void refreshContent() {
         getLoaderManager().destroyLoader(NEWS_LOADER_ID);
-        SAMPLE = "https://content.guardianapis.com/search?q=google&show-fields=thumbnail&api-key=test";
         checkNetworkConnectionAndInitLoader();
+    }
+
+    // Receive a intent which is triggered by user when performing a search
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleSearchIntent(intent);
+    }
+
+    private void handleSearchIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String userQuery = intent.getStringExtra(SearchManager.QUERY);
+            // If user hit the enter without actually typing anything perform a default search
+            if(TextUtils.isEmpty(userQuery)){
+                mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
+            } else {
+                // Otherwise generate a Url API with user query
+                mCorrectUserQueryApi = generateCorrectUrlApi(userQuery);
+            }
+            // Destroy the loader manager in order to create a new loader to load new batch of data
+            getLoaderManager().destroyLoader(NEWS_LOADER_ID);
+            checkNetworkConnectionAndInitLoader();
+            //use the query to search your data somehow
+            Log.i(LOG_TAG, "User query : " + userQuery);
+        }
     }
 }
 
