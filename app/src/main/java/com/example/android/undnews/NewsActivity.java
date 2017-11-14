@@ -30,7 +30,7 @@ public class NewsActivity extends AppCompatActivity
     private static final int NEWS_LOADER_ID = 1;
     private static final String SAMPLE = "https://content.guardianapis.com/search?q=apple&show-fields=thumbnail&api-key=test";
     private static final String API_FIRST_PART = "https://content.guardianapis.com/search?q=";
-    private static final String API_SECOND_PART = "&show-fields=thumbnail&page-size=20&show-tags=contributor&api-key=test";
+    private static final String API_SECOND_PART = "&show-fields=thumbnail&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
 
     private static final String QUICK_LINK_API_PART_1 = "https://content.guardianapis.com/";
     private static final String QUICK_LINK_API_PART_2 = "?&show-fields=thumbnail&page-size=20&show-tags=contributor&api-key=test";
@@ -79,6 +79,8 @@ public class NewsActivity extends AppCompatActivity
         mNewsAdapter = new NewsAdapter(this, new ArrayList<News>());
         mListView.setAdapter(mNewsAdapter);
 
+        // When user first starts the app, make the API URL to show some of the latest news
+        mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
