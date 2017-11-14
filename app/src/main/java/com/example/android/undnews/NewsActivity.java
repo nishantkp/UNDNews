@@ -166,6 +166,8 @@ public class NewsActivity extends AppCompatActivity
     private void refreshContent() {
         getLoaderManager().destroyLoader(NEWS_LOADER_ID);
         checkNetworkConnectionAndInitLoader();
+        // Set visibility of ProgressBar to GONE when refreshing the content
+        mProgressBar.setVisibility(View.GONE);
     }
 
     // Receive a intent which is triggered by user when performing a search
