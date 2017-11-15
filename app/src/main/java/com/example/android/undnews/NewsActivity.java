@@ -160,6 +160,8 @@ public class NewsActivity extends AppCompatActivity
         assert searchManager != null;
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
+        // Set SearchView to take full screen width when clicked on
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         return true;
     }
