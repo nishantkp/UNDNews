@@ -53,7 +53,9 @@ public class NewsActivity extends AppCompatActivity
         mEmptyView = findViewById(R.id.empty_view_text_box);
         mEmptyView.setVisibility(View.GONE);
 
+        // Find the swipe to refresh layout in list.xml
         mSwipeRefreshLayout = findViewById(R.id.swipe_to_refresh);
+        // Set the color scheme of refresh icon
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.orange)
                 , getResources().getColor(R.color.green)
                 , getResources().getColor(R.color.blue));
