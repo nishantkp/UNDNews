@@ -32,7 +32,6 @@ public class NewsActivity extends AppCompatActivity
 
     private static String LOG_TAG = NewsActivity.class.getName();
 
-    private ListView mListView;
     private NewsAdapter mNewsAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
@@ -64,13 +63,13 @@ public class NewsActivity extends AppCompatActivity
         });
 
         // Find the ListView with id list in list.xml
-        mListView = findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
         // Set empty view on ListView in order to display "no data" and "check network connection"
-        mListView.setEmptyView(mEmptyView);
+        listView.setEmptyView(mEmptyView);
 
         // Create a empty custom adapter and set it on ListView
         mNewsAdapter = new NewsAdapter(this, new ArrayList<News>());
-        mListView.setAdapter(mNewsAdapter);
+        listView.setAdapter(mNewsAdapter);
 
         // When user first starts the app, make the API URL to show some of the latest news
         mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
