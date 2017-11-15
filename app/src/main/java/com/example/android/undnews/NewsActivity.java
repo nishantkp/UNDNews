@@ -40,6 +40,9 @@ public class NewsActivity extends AppCompatActivity
     private String mCorrectUserQueryApi;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+    // Header for list
+    private View mListViewHeader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +69,13 @@ public class NewsActivity extends AppCompatActivity
             }
         });
 
+        // Find the layout for list_header
+        mListViewHeader = View.inflate(this, R.layout.list_header, null);
+
         // Find the ListView with id list in list.xml
         ListView listView = findViewById(R.id.list);
+        // Attach a header to listView
+        listView.addHeaderView(mListViewHeader);
         // Set empty view on ListView in order to display "no data" and "check network connection"
         listView.setEmptyView(mEmptyView);
 
@@ -190,6 +198,11 @@ public class NewsActivity extends AppCompatActivity
     private void handleSearchIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String userQuery = intent.getStringExtra(SearchManager.QUERY);
+
+            // Find the TextView in list_header and set the text to search query
+            TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
+            userQueryTextHeader.setText(userQuery);
+
             // If user hit the enter without actually typing anything perform a default search
             if (TextUtils.isEmpty(userQuery)) {
                 mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;

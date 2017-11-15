@@ -12,4 +12,7 @@
 
     <!-- Hint for search widget in ActionBar [CHAR LIMIT=20] -->
     <string name="search_hint">search</string>
+
+    <!-- Header text for list [CHAR LIMIT=20]-->
+    <string name="list_header_title">Top Headlines</string>
 </resources>
