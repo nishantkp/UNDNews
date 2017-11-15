@@ -27,7 +27,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
     // Tag for log messages
     private static final String LOG_TAG = NewsAdapter.class.getName();
 
-    public NewsAdapter(@NonNull Context context, List<News> newsList) {
+    NewsAdapter(@NonNull Context context, List<News> newsList) {
         super(context, 0, newsList);
     }
 
