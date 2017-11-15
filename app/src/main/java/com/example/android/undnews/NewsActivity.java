@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -70,6 +72,17 @@ public class NewsActivity extends AppCompatActivity
         // Create a empty custom adapter and set it on ListView
         mNewsAdapter = new NewsAdapter(this, new ArrayList<News>());
         listView.setAdapter(mNewsAdapter);
+
+        // Attach a listener on list item to open a link for the news item in web browser
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int currentPosition, long l) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                News currentNewsObject = (News) adapterView.getItemAtPosition(currentPosition);
+                webIntent.setData(Uri.parse(currentNewsObject.getWebUrl()));
+                startActivity(webIntent);
+            }
+        });
 
         // When user first starts the app, make the API URL to show some of the latest news
         mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
