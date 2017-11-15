@@ -146,8 +146,8 @@ public class QueryUtils {
     /**
      * Generate the list of News by extracting JSON response
      *
-     * @param   jsonResponse JSON response received from API in String format
-     * @return  List of news
+     * @param jsonResponse JSON response received from API in String format
+     * @return List of news
      */
     private static List<News> extractFeaturesFromJsonResponse(String jsonResponse) {
         List<News> newsList = new ArrayList<>();
@@ -171,6 +171,8 @@ public class QueryUtils {
                 String newsHeadline = newsObject.getString("webTitle");
                 // Get published time
                 String publishedTime = newsObject.getString("webPublicationDate");
+                // Get web Url
+                String webUrl = newsObject.getString("webUrl");
 
                 Drawable newsThumbnailDrawable = null;
                 // Get thumbnail drawable from URL
@@ -204,7 +206,7 @@ public class QueryUtils {
                 Log.i(LOG_TAG, "\nThumbnail : " + newsThumbnailDrawable);
                 Log.i(LOG_TAG, "\nAuthor name : " + authorName);
 
-                newsList.add(new News(newsHeadline, sectionName, authorName, publishedTime, newsThumbnailDrawable));
+                newsList.add(new News(newsHeadline, sectionName, authorName, publishedTime, newsThumbnailDrawable, webUrl));
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error creating JSON object : extractFeaturesFromJsonResponse() method", e);
