@@ -1,8 +1,10 @@
 package com.example.android.undnews;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,12 +66,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // Find the TextView with od news_time and set the published time
         TextView publishedTime = listView.findViewById(R.id.news_time);
-        publishedTime.setText(getTimeAndDate(currentNewsDetail.getTime()));
+        publishedTime.setText(getTimeAndDate(currentNewsDetail.getTime()).toString());
 
         // If author name is present then,
         // Find the TextView with id news_contributor_name and set the author name
         TextView authorName = listView.findViewById(R.id.news_contributor_name);
-        if(currentNewsDetail.getAuthor() != null){
+        if (currentNewsDetail.getAuthor() != null) {
             authorName.setText(currentNewsDetail.getAuthor());
         } else {
             authorName.setVisibility(View.GONE);
@@ -80,20 +82,43 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     /**
      * This method is used to convert time format into more human readable one
+     * This method uses DataUtils class's GetRelativeTimeSpanString method
      *
-     * @param timeString    2017-09-13T18:04:29Z
-     * @return              12 Sept, 2017
+     * @param timeString 2017-09-13T18:04:29Z
+     * @return Time spans in the past are formatted like "42 minutes ago".
+     * Time spans in the future are formatted like "In 42 minutes"
      */
-    private String getTimeAndDate(String timeString){
+    private CharSequence getTimeAndDate(String timeString) {
 
+        // Parse the current date-time string into Date object of format {yyyy-MM-dd'T'hh:mm:ss'Z'}
         Date dateObject = null;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat
+                = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
         try {
             dateObject = simpleDateFormat.parse(timeString);
         } catch (ParseException e) {
-            Log.e(LOG_TAG,"Error parsing date object : getTimeAndDate() method",e);
+            Log.e(LOG_TAG, "Error parsing date object : getTimeAndDate() method", e);
         }
-        SimpleDateFormat outDate = new SimpleDateFormat("h:mm a  dd MMM, yyyy");
-        return outDate.format(dateObject);
+
+        // Convert the Date object of format {yyyy-MM-dd'T'hh:mm:ss'Z'} into
+        // string format of {yyyy-MM-dd HH:mm:ss}
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat outDate
+                = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentDate = outDate.format(dateObject);
+
+        // Parse the date-time string into Date object of format {yyyy-MM-dd HH:mm:ss}
+        // And get the time in milliseconds from Date object
+        long currentTimeInMillis = 0;
+        try {
+            Date currentDateObject = outDate.parse(currentDate);
+            currentTimeInMillis = currentDateObject.getTime();
+        } catch (ParseException e) {
+            Log.e(LOG_TAG, "Error parsing date object : getTimeAndDate() method,e");
+        }
+        // Returns the date-time in more human readable format
+        return DateUtils.getRelativeTimeSpanString(
+                currentTimeInMillis
+                , System.currentTimeMillis()
+                , DateUtils.MINUTE_IN_MILLIS);
     }
 }
