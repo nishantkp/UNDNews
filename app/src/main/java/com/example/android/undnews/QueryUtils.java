@@ -199,13 +199,6 @@ public class QueryUtils {
                         }
                     }
                 }
-
-                Log.i(LOG_TAG, "\nNews HeadLine : " + newsHeadline);
-                Log.i(LOG_TAG, "\nSection Name : " + sectionName);
-                Log.i(LOG_TAG, "\nPublished Time : " + publishedTime);
-                Log.i(LOG_TAG, "\nThumbnail : " + newsThumbnailDrawable);
-                Log.i(LOG_TAG, "\nAuthor name : " + authorName);
-
                 newsList.add(new News(newsHeadline, sectionName, authorName, publishedTime, newsThumbnailDrawable, webUrl));
             }
         } catch (JSONException e) {

@@ -157,9 +157,6 @@ public class NewsActivity extends AppCompatActivity
     private String generateCorrectUrlApi(String userQuery) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
-        Log.i(LOG_TAG, "\nUser query : " + userQuery);
-        Log.i(LOG_TAG, "\nCorrect User Api : " + API_FIRST_PART + query + API_SECOND_PART);
-
         return API_FIRST_PART + query + API_SECOND_PART;
     }
 
@@ -214,8 +211,6 @@ public class NewsActivity extends AppCompatActivity
             // Destroy the loader manager in order to create a new loader to load new batch of data
             getLoaderManager().destroyLoader(NEWS_LOADER_ID);
             checkNetworkConnectionAndInitLoader();
-            //use the query to search your data somehow
-            Log.i(LOG_TAG, "User query : " + userQuery);
         }
     }
 }
