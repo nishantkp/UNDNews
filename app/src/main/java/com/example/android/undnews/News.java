@@ -24,23 +24,6 @@ public class News {
      * @param author    author of article
      * @param time      time at which article published
      * @param thumbnail image related to news
-     */
-    public News(String headline, String section, String author, String time, Drawable thumbnail) {
-        mHeadline = headline;
-        mSection = section;
-        mAuthor = author;
-        mTime = time;
-        mThumbnail = thumbnail;
-    }
-
-    /**
-     * Constructor for News object
-     *
-     * @param headline  news headline
-     * @param section   section of news(i.e Technology, Sport, Life and Style etc.)
-     * @param author    author of article
-     * @param time      time at which article published
-     * @param thumbnail image related to news
      * @param webUrl    web URL of news item
      */
     public News(String headline, String section, String author, String time, Drawable thumbnail, String webUrl) {
@@ -50,13 +33,6 @@ public class News {
         mTime = time;
         mThumbnail = thumbnail;
         mWebUrl = webUrl;
-    }
-
-    public News(String headline, String section, String time, Drawable thumbnail) {
-        mHeadline = headline;
-        mSection = section;
-        mTime = time;
-        mThumbnail = thumbnail;
     }
 
     // Get the headline of news
