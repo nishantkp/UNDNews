@@ -15,4 +15,7 @@
 
     <!-- Header text for list [CHAR LIMIT=20]-->
     <string name="list_header_title">Top Headlines</string>
+
+    <!-- Title for home icon in action bar [CHAR LIMIT=15]-->
+    <string name="menu_home_title">Home</string>
 </resources>
