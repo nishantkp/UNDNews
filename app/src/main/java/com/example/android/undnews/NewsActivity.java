@@ -14,8 +14,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -32,17 +30,12 @@ public class NewsActivity extends AppCompatActivity
     private static final String API_FIRST_PART = "https://content.guardianapis.com/search?q=";
     private static final String API_SECOND_PART = "&show-fields=thumbnail&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
 
-    private static final String QUICK_LINK_API_PART_1 = "https://content.guardianapis.com/";
-    private static final String QUICK_LINK_API_PART_2 = "?&show-fields=thumbnail&page-size=20&show-tags=contributor&api-key=test";
-
     private static String LOG_TAG = NewsActivity.class.getName();
 
     private ListView mListView;
     private NewsAdapter mNewsAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
-    private EditText mUserInputQuery;
-    private Button mSearchButton;
     private String mCorrectUserQueryApi;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -184,7 +177,7 @@ public class NewsActivity extends AppCompatActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String userQuery = intent.getStringExtra(SearchManager.QUERY);
             // If user hit the enter without actually typing anything perform a default search
-            if(TextUtils.isEmpty(userQuery)){
+            if (TextUtils.isEmpty(userQuery)) {
                 mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
             } else {
                 // Otherwise generate a Url API with user query
