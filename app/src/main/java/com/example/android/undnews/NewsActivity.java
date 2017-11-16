@@ -131,22 +131,35 @@ public class NewsActivity extends AppCompatActivity
         mNewsAdapter.clear();
     }
 
+    /**
+     * This method is called to check network connection and initialize the loader
+     */
     private void checkNetworkConnectionAndInitLoader() {
-        ConnectivityManager connectivityManager =
-                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        assert connectivityManager != null;
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-        boolean isConnected = activeNetworkInfo != null
-                && activeNetworkInfo.isConnected();
-
-        if (isConnected) {
+        if (isNetworkAvailable()) {
             // If the device is connected to network, make progress bar visible and
-            // hide empty text view
-            // Initialize the loader
+            // hide empty text view and initialize the loader
             mProgressBar.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
             getLoaderManager().initLoader(NEWS_LOADER_ID, null, NewsActivity.this);
+        } else {
+            // If there is no network, make progress bar invisible and
+            // set emptyView TextView text to "Check network connection!"
+            mProgressBar.setVisibility(View.GONE);
+            mEmptyView.setText(getResources().getString(R.string.news_activity_check_network_connection));
+        }
+    }
+
+    /**
+     * This method is called to check network connection and restart the existing loader
+     * to load new batch of data
+     */
+    private void checkNetworkConnectionAndResetLoader() {
+        if (isNetworkAvailable()) {
+            // If the device is connected to network, make progress bar visible and
+            // hide empty text view and restart the loader
+            mProgressBar.setVisibility(View.VISIBLE);
+            mEmptyView.setVisibility(View.GONE);
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, NewsActivity.this);
         } else {
             // If there is no network, make progress bar invisible and
             // set emptyView TextView text to "Check network connection!"
@@ -188,15 +201,14 @@ public class NewsActivity extends AppCompatActivity
             // When user clicks on home icon in ActionBar, destroy the current loader and
             // initialize a new loader with API for top headlines to display top headlines
             case R.id.home:
-                // Destroy the loader manager in order to create a new loader to load new batch of data
-                getLoaderManager().destroyLoader(NEWS_LOADER_ID);
                 // Update the API url to display top headlines
                 mCorrectUserQueryApi = TOP_HEADLINES;
                 // Find the TextView in list_header and set the text to search query
                 TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
                 userQueryTextHeader.setText(getResources().getString(R.string.list_header_title));
-                // Check the network connection and initialize the loader
-                checkNetworkConnectionAndInitLoader();
+                // Check the network connection and restart the loader to display top headlines
+                mNewsAdapter.clear();
+                checkNetworkConnectionAndResetLoader();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -204,8 +216,8 @@ public class NewsActivity extends AppCompatActivity
 
     // This method is called to refresh the content of loader
     private void refreshContent() {
-        getLoaderManager().destroyLoader(NEWS_LOADER_ID);
-        checkNetworkConnectionAndInitLoader();
+        // Check network connection and restart the loader to refresh news headlines
+        checkNetworkConnectionAndResetLoader();
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
     }
@@ -233,10 +245,25 @@ public class NewsActivity extends AppCompatActivity
                 // Otherwise generate a Url API with user query
                 mCorrectUserQueryApi = generateCorrectUrlApi(userQuery);
             }
-            // Destroy the loader manager in order to create a new loader to load new batch of data
-            getLoaderManager().destroyLoader(NEWS_LOADER_ID);
-            checkNetworkConnectionAndInitLoader();
+            // Check the network connection and restart the loader
+            mNewsAdapter.clear();
+            checkNetworkConnectionAndResetLoader();
         }
+    }
+
+    /**
+     * THis method is called to check network is available or not
+     *
+     * @return If network is available method returns TRUE otherwise false
+     */
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null
+                && activeNetworkInfo.isConnected();
     }
 }
 
