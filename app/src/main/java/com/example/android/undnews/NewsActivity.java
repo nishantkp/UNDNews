@@ -247,7 +247,7 @@ public class NewsActivity extends AppCompatActivity
             }
             // Check the network connection and restart the loader
             mNewsAdapter.clear();
-            checkNetworkConnectionAndResetLoader();
+            checkNetworkConnectionAndRestartLoader();
         }
     }
 
