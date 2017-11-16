@@ -14,6 +14,7 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - Exception handeling
 - AsynckTask
 - Network call on background thread
+- Swipe list view to refresh
 
 #### New class
 
