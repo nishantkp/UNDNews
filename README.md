@@ -23,6 +23,27 @@ Time spans in the past are formatted like "42 minutes ago". Time spans in the fu
 DateUtils.getRelativeTimeSpanString (long time, long now, long minResolution, int flags);
 ```
 
+#### SwipeRefreshLayout Widget
+
+The following example demonstrates how to add the SwipeRefreshLayout widget to an existing layout file containing a ListView:
+[developer.android link](https://developer.android.com/training/swipe/add-swipe-interface.html)
+
+```xml
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.v4.widget.SwipeRefreshLayout>
+```
+
+
 #### API
 
 Well-maintained API which returns information in a JSON format.<br />
@@ -32,6 +53,11 @@ Well-maintained API which returns information in a JSON format.<br />
 https://content.guardianapis.com/search?q=debates&api-key=test
 https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test
 ```
+
+## UX
+
+<img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/home.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/swipe-refresh.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/search-query.png" width="275" height="475"> 
+
 
 ## PROJECT LICENSE
 
