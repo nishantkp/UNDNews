@@ -3,14 +3,14 @@
     <!-- App theme -->
     <color name="colorPrimary">#263238</color>
     <color name="colorPrimaryDark">#263238</color>
-    <color name="colorAccent">#0091ea</color>
+    <color name="colorAccent">#2979FF</color>
 
     <!-- Text color schemes -->
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#757575</color>
 
     <!-- Color for category in each list item -->
-    <color name="listItemCategoryColor">#0091ea</color>
+    <color name="listItemCategoryColor">#2979FF</color>
 
     <!-- Background color for each activity -->
     <color name="backgroundColor">#FFFFFF</color>
