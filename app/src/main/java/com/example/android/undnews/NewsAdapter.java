@@ -54,13 +54,15 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // Find the ImageView with id news_thumbnail and set the Drawable object
         ImageView thumbnail = listView.findViewById(R.id.news_thumbnail);
+        View bufferView = listView.findViewById(R.id.buffer_view);
         if (currentNewsDetail.getThumbnail() != null) {
+            thumbnail.setVisibility(View.VISIBLE);
+            bufferView.setVisibility(View.VISIBLE);
             thumbnail.setImageDrawable(currentNewsDetail.getThumbnail());
         } else {
             // Hide the image view
             thumbnail.setVisibility(View.GONE);
             // Hide the buffer view
-            View bufferView = listView.findViewById(R.id.buffer_view);
             bufferView.setVisibility(View.GONE);
         }
 
