@@ -184,7 +184,7 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             // When user clicks on home icon in ActionBar, destroy the current loader and
             // initialize a new loader with API for top headlines to display top headlines
             case R.id.home:
@@ -216,6 +216,8 @@ public class NewsActivity extends AppCompatActivity
         handleSearchIntent(intent);
     }
 
+    // When user performs search through search widget, generate the correct API url
+    // and load new batch of news articles
     private void handleSearchIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String userQuery = intent.getStringExtra(SearchManager.QUERY);
