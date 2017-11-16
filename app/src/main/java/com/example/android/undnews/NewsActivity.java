@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -177,6 +178,28 @@ public class NewsActivity extends AppCompatActivity
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         return true;
+    }
+
+    // Add action for items in ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            // When user clicks on home icon in ActionBar, destroy the current loader and
+            // initialize a new loader with API for top headlines to display top headlines
+            case R.id.home:
+                // Destroy the loader manager in order to create a new loader to load new batch of data
+                getLoaderManager().destroyLoader(NEWS_LOADER_ID);
+                // Update the API url to display top headlines
+                mCorrectUserQueryApi = TOP_HEADLINES;
+                // Find the TextView in list_header and set the text to search query
+                TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
+                userQueryTextHeader.setText(getResources().getString(R.string.list_header_title));
+                // Check the network connection and initialize the loader
+                checkNetworkConnectionAndInitLoader();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // This method is called to refresh the content of loader
