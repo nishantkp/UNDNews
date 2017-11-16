@@ -153,7 +153,7 @@ public class NewsActivity extends AppCompatActivity
      * This method is called to check network connection and restart the existing loader
      * to load new batch of data
      */
-    private void checkNetworkConnectionAndResetLoader() {
+    private void checkNetworkConnectionAndRestartLoader() {
         if (isNetworkAvailable()) {
             // If the device is connected to network, make progress bar visible and
             // hide empty text view and restart the loader
@@ -208,7 +208,7 @@ public class NewsActivity extends AppCompatActivity
                 userQueryTextHeader.setText(getResources().getString(R.string.list_header_title));
                 // Check the network connection and restart the loader to display top headlines
                 mNewsAdapter.clear();
-                checkNetworkConnectionAndResetLoader();
+                checkNetworkConnectionAndRestartLoader();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -217,7 +217,7 @@ public class NewsActivity extends AppCompatActivity
     // This method is called to refresh the content of loader
     private void refreshContent() {
         // Check network connection and restart the loader to refresh news headlines
-        checkNetworkConnectionAndResetLoader();
+        checkNetworkConnectionAndRestartLoader();
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
     }
