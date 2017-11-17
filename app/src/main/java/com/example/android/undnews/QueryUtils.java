@@ -181,10 +181,10 @@ public class QueryUtils {
                     String newsThumbnailUrlString;
                     if (field.has("thumbnail")) {
                         newsThumbnailUrlString = field.getString("thumbnail");
+                        newsThumbnailDrawable = getDrawable(newsThumbnailUrlString);
                     } else {
-                        newsThumbnailUrlString = null;
+                        newsThumbnailDrawable = null;
                     }
-                    newsThumbnailDrawable = getDrawable(newsThumbnailUrlString);
                 }
 
                 // Get author name
