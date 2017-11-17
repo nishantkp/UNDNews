@@ -15,6 +15,7 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - AsynckTask
 - Network call on background thread
 - Swipe list view to refresh
+- ViewHolder
 
 #### New class
 
