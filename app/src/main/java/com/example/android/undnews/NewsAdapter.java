@@ -27,6 +27,20 @@ public class NewsAdapter extends ArrayAdapter<News> {
     // Tag for log messages
     private static final String LOG_TAG = NewsAdapter.class.getName();
 
+    /**
+     * ViewHolder for list item in res/layout/news_list_item.xml
+     * View holder that cashes the views so we do not need to use findViewById every time
+     * So scrolling of list view becomes more smooth
+     */
+    static class ViewHolderListItem{
+        TextView sectionName;
+        TextView headline;
+        ImageView thumbnail;
+        View bufferView;
+        TextView publishedTime;
+        TextView authorName;
+    }
+
     NewsAdapter(@NonNull Context context, List<News> newsList) {
         super(context, 0, newsList);
     }
@@ -35,48 +49,57 @@ public class NewsAdapter extends ArrayAdapter<News> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        ViewHolderListItem viewHolder;
         View listView = convertView;
         if (listView == null) {
             listView = LayoutInflater.from(getContext()).
                     inflate(R.layout.news_list_item, parent, false);
+
+            viewHolder = new ViewHolderListItem();
+            // Find all the views in list item by their IDs
+            viewHolder.sectionName = listView.findViewById(R.id.news_section);
+            viewHolder.headline = listView.findViewById(R.id.news_headline);
+            viewHolder.thumbnail = listView.findViewById(R.id.news_thumbnail);
+            viewHolder.bufferView = listView.findViewById(R.id.buffer_view);
+            viewHolder.publishedTime = listView.findViewById(R.id.news_time);
+            viewHolder.authorName = listView.findViewById(R.id.news_contributor_name);
+            // Store the holder with the view
+            listView.setTag(viewHolder);
+        } else {
+            // We've just avoided calling findViewByID every time
+            // So when the listView is present just use the ViewHolder
+            viewHolder = (ViewHolderListItem) listView.getTag();
         }
 
         News currentNewsDetail = getItem(position);
 
-        // Find the TextView with id news_section and set the section name
-        TextView sectionName = listView.findViewById(R.id.news_section);
+        // Set the section name
         assert currentNewsDetail != null;
-        sectionName.setText(currentNewsDetail.getSection());
+        viewHolder.sectionName.setText(currentNewsDetail.getSection());
 
-        // Find the text view with id news_headline and set the headline
-        TextView headline = listView.findViewById(R.id.news_headline);
-        headline.setText(currentNewsDetail.getHeadline());
+        // Set the headline
+        viewHolder.headline.setText(currentNewsDetail.getHeadline());
 
-        // Find the ImageView with id news_thumbnail and set the Drawable object
-        ImageView thumbnail = listView.findViewById(R.id.news_thumbnail);
-        View bufferView = listView.findViewById(R.id.buffer_view);
+        // Set the Drawable object
         if (currentNewsDetail.getThumbnail() != null) {
-            thumbnail.setVisibility(View.VISIBLE);
-            bufferView.setVisibility(View.VISIBLE);
-            thumbnail.setImageDrawable(currentNewsDetail.getThumbnail());
+            viewHolder.thumbnail.setVisibility(View.VISIBLE);
+            viewHolder.bufferView.setVisibility(View.VISIBLE);
+            viewHolder.thumbnail.setImageDrawable(currentNewsDetail.getThumbnail());
         } else {
             // Hide the image view
-            thumbnail.setVisibility(View.GONE);
+            viewHolder.thumbnail.setVisibility(View.GONE);
             // Hide the buffer view
-            bufferView.setVisibility(View.GONE);
+            viewHolder.bufferView.setVisibility(View.GONE);
         }
 
-        // Find the TextView with od news_time and set the published time
-        TextView publishedTime = listView.findViewById(R.id.news_time);
-        publishedTime.setText(getTimeAndDate(currentNewsDetail.getTime()).toString());
+        // Set the published time
+        viewHolder.publishedTime.setText(getTimeAndDate(currentNewsDetail.getTime()).toString());
 
-        // If author name is present then,
-        // Find the TextView with id news_contributor_name and set the author name
-        TextView authorName = listView.findViewById(R.id.news_contributor_name);
+        // If author name is present then set the author name
         if (currentNewsDetail.getAuthor() != null) {
-            authorName.setText(currentNewsDetail.getAuthor());
+            viewHolder.authorName.setText(currentNewsDetail.getAuthor());
         } else {
-            authorName.setVisibility(View.GONE);
+            viewHolder.authorName.setVisibility(View.GONE);
         }
 
         return listView;
