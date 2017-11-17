@@ -30,9 +30,9 @@ public class NewsActivity extends AppCompatActivity
 
     private static final int NEWS_LOADER_ID = 1;
     private static final String SAMPLE = "https://content.guardianapis.com/search?q=apple&show-fields=thumbnail&api-key=test";
-    private static final String TOP_HEADLINES = "https://content.guardianapis.com/search?q=&show-fields=thumbnail&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
+    private static final String TOP_HEADLINES = "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
     private static final String API_FIRST_PART = "https://content.guardianapis.com/search?q=";
-    private static final String API_SECOND_PART = "&show-fields=thumbnail&page-size=20&show-tags=contributor&order-by=relevance&api-key=test";
+    private static final String API_SECOND_PART = "&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test";
 
     private static String LOG_TAG = NewsActivity.class.getName();
 
