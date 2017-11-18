@@ -20,51 +20,22 @@
 
             <TextView
                 android:id="@+id/news_section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif"
-                android:maxLines="1"
-                android:paddingBottom="@dimen/default_list_item_padding"
-                android:textColor="@color/listItemCategoryColor"
-                android:textSize="@dimen/secondary_text_size"
-                android:textStyle="italic"
+                style="@style/list_item_section_name_style"
                 tools:text="@string/placeholder_text_section" />
 
             <TextView
                 android:id="@+id/news_headline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/news_section"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
-                android:maxLines="2"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/primary_text_size"
+                style="@style/list_item_headline_text_style"
                 tools:text="@string/placeholder_text_headline" />
 
             <TextView
                 android:id="@+id/news_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="@dimen/secondary_text_size"
+                style="@style/list_item_date_style"
                 tools:text="@string/placeholder_text_time" />
 
             <TextView
                 android:id="@+id/news_contributor_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/news_section"
-                android:fontFamily="sans-serif-light"
-                android:paddingBottom="@dimen/default_list_item_padding"
-                android:paddingLeft="@dimen/default_list_item_padding"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="@dimen/secondary_text_size"
-                android:textStyle="italic"
+                style="@style/list_item_author_text_style"
                 tools:text="@string/placeholder_text_author" />
         </RelativeLayout>
 
@@ -76,10 +47,6 @@
 
     <ImageView
         android:id="@+id/news_thumbnail"
-        android:layout_width="@dimen/thumbnail_height"
-        android:layout_height="@dimen/thumbnail_height"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:scaleType="centerCrop"
+        style="@style/list_item_news_thumbnail_style"
         android:src="@drawable/place_holder_one" />
 </RelativeLayout>

@@ -8,4 +8,62 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Style for section name in list item -->
+    <style name="list_item_section_name_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingBottom">@dimen/default_list_item_padding</item>
+        <item name="android:textColor">@color/listItemCategoryColor</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- Style for headline in list item -->
+    <style name="list_item_headline_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/news_section</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
+    </style>
+
+    <!-- Style for author name in list item -->
+    <style name="list_item_author_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_toRightOf">@+id/news_section</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingBottom">@dimen/default_list_item_padding</item>
+        <item name="android:paddingLeft">@dimen/default_list_item_padding</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- Style for date in list item -->
+    <style name="list_item_date_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+    </style>
+
+    <!-- Style for news thumbnail in list item -->
+    <style name="list_item_news_thumbnail_style">
+        <item name="android:layout_width">@dimen/thumbnail_height</item>
+        <item name="android:layout_height">@dimen/thumbnail_height</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
 </resources>
