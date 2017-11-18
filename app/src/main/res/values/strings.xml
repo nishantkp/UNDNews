@@ -1,6 +1,7 @@
 <resources>
     <!-- Name if App in action bar-->
     <string name="app_name">News</string>
+
     <!-- Text to display when there is not content is available after search [CHAR LIMIT=20] -->
     <string name="news_activity_no_content">No content!</string>
 
@@ -22,6 +23,6 @@
     <!-- Place holder text for a list item -->
     <string name="placeholder_text_headline">The Joy of Six: county cricket cult heroes</string>
     <string name="placeholder_text_author">Nishant Patel</string>
-    <string name="placeholder_text_time">2017-08-23T14:58:42Z</string>
+    <string name="placeholder_text_time">2017–08–23T14:58:42Z</string>
     <string name="placeholder_text_section">Sport</string>
 </resources>
