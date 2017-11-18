@@ -2,8 +2,8 @@
     <!-- Name if App in action bar-->
     <string name="app_name">News</string>
 
-    <!-- Text to display when there is not content is available after search [CHAR LIMIT=20] -->
-    <string name="news_activity_no_content">No content!</string>
+    <!-- Text to display when there is not content is available after search [CHAR LIMIT=100] -->
+    <string name="news_activity_no_content">No relevant news found!\nUse home icon to get the latest news feed</string>
 
     <!-- Text to display when there is no network connection [CHAR LIMIT=40]-->
     <string name="news_activity_check_network_connection">Check network connection!</string>
