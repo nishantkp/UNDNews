@@ -14,6 +14,12 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     private String mUrl;
 
+    /**
+     * NewsLoader constructor
+     *
+     * @param context  context of app
+     * @param queryUrl url string as per user input in SearchView
+     */
     public NewsLoader(Context context, String queryUrl) {
         super(context);
         mUrl = queryUrl;
@@ -25,6 +31,11 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
         forceLoad();
     }
 
+    /**
+     * This method is called to load data from url string in background thread
+     *
+     * @return News detail in form of List<News>
+     */
     @Override
     public List<News> loadInBackground() {
 

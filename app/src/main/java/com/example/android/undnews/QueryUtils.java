@@ -31,6 +31,12 @@ public class QueryUtils {
     public QueryUtils() {
     }
 
+    /**
+     * This method is used to get the news in form of List<News> from url string
+     *
+     * @param requestedQueryURLString url string generated as per user input in SearchView
+     * @return News data in form of List<News>
+     */
     public static List<News> fetchNewsData(String requestedQueryURLString) {
         URL url;
         String JSONResponse = null;
@@ -207,7 +213,12 @@ public class QueryUtils {
         return newsList;
     }
 
-    // Generates Drawable object from url string
+    /**
+     * This method is used to get Drawable object from a url string
+     *
+     * @param thumbnailUrl url string of a thumbnail retrieved from JSON response
+     * @return drawable of a thumbnail
+     */
     private static Drawable getDrawable(String thumbnailUrl) {
         URL url = generateUrl(thumbnailUrl);
         Drawable drawable = null;

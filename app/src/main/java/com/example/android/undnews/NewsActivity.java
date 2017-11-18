@@ -168,6 +168,12 @@ public class NewsActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * This method is called to generate the correct url string when user provides a search query
+     *
+     * @param userQuery search query submitted by user
+     * @return correct url string as per query
+     */
     private String generateCorrectUrlApi(String userQuery) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
@@ -214,7 +220,9 @@ public class NewsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    // This method is called to refresh the content of loader
+    /**
+     * This method is called to refresh the content of loader
+     */
     private void refreshContent() {
         // Check network connection and restart the loader to refresh news headlines
         checkNetworkConnectionAndRestartLoader();
@@ -252,7 +260,7 @@ public class NewsActivity extends AppCompatActivity
     }
 
     /**
-     * THis method is called to check network is available or not
+     * This method is called to check network is available or not
      *
      * @return If network is available method returns TRUE otherwise false
      */
