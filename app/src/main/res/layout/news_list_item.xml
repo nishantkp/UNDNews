@@ -26,10 +26,10 @@
                 android:fontFamily="sans-serif"
                 android:maxLines="1"
                 android:paddingBottom="@dimen/default_list_item_padding"
-                android:text="Sport "
                 android:textColor="@color/listItemCategoryColor"
                 android:textSize="@dimen/secondary_text_size"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                tools:text="@string/placeholder_text_section" />
 
             <TextView
                 android:id="@+id/news_headline"
@@ -39,9 +39,9 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="2"
-                android:text="The Joy of Six: county cricket cult heroes"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="@dimen/primary_text_size" />
+                android:textSize="@dimen/primary_text_size"
+                tools:text="@string/placeholder_text_headline" />
 
             <TextView
                 android:id="@+id/news_time"
@@ -50,9 +50,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:fontFamily="sans-serif"
-                android:text="2017-08-23T14:58:42Z"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="@dimen/secondary_text_size" />
+                android:textSize="@dimen/secondary_text_size"
+                tools:text="@string/placeholder_text_time" />
 
             <TextView
                 android:id="@+id/news_contributor_name"
@@ -60,11 +60,12 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/news_section"
                 android:fontFamily="sans-serif-light"
+                android:paddingBottom="@dimen/default_list_item_padding"
                 android:paddingLeft="@dimen/default_list_item_padding"
                 android:textColor="@color/secondaryTextColor"
                 android:textSize="@dimen/secondary_text_size"
                 android:textStyle="italic"
-                tools:text="Nishant Patel" />
+                tools:text="@string/placeholder_text_author" />
         </RelativeLayout>
 
         <View
@@ -79,7 +80,6 @@
         android:layout_height="@dimen/thumbnail_height"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_weight="1"
         android:scaleType="centerCrop"
         android:src="@drawable/place_holder_one" />
 </RelativeLayout>

@@ -18,4 +18,10 @@
 
     <!-- Title for home icon in action bar [CHAR LIMIT=15]-->
     <string name="menu_home_title">Home</string>
+
+    <!-- Place holder text for a list item -->
+    <string name="placeholder_text_headline">The Joy of Six: county cricket cult heroes</string>
+    <string name="placeholder_text_author">Nishant Patel</string>
+    <string name="placeholder_text_time">2017-08-23T14:58:42Z</string>
+    <string name="placeholder_text_section">Sport</string>
 </resources>
