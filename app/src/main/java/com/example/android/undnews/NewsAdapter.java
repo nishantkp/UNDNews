@@ -97,6 +97,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // If author name is present then set the author name
         if (currentNewsDetail.getAuthor() != null) {
+            viewHolder.authorName.setVisibility(View.VISIBLE);
             viewHolder.authorName.setText(currentNewsDetail.getAuthor());
         } else {
             viewHolder.authorName.setVisibility(View.GONE);
