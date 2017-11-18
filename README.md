@@ -56,7 +56,7 @@ https://content.guardianapis.com/search?q=debates&api-key=test
 https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test
 ```
 
-## UX
+## UX Design
 
 <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/home.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/swipe-refresh.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/search-query.png" width="275" height="475"> 
 
