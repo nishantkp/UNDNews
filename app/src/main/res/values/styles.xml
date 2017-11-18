@@ -66,4 +66,16 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <!-- Style for ListView header text -->
+    <style name="list_view_header_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/backgroundColor</item>
+        <item name="android:fontFamily">times</item>
+        <item name="android:padding">@dimen/default_app_padding</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/list_header_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

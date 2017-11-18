@@ -6,13 +6,6 @@
 
     <TextView
         android:id="@+id/list_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/backgroundColor"
-        android:fontFamily="times"
-        android:padding="@dimen/default_app_padding"
-        android:text="@string/list_header_title"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/list_header_text"
-        android:textStyle="bold" />
+        style="@style/list_view_header_style"
+        android:text="@string/list_header_title" />
 </LinearLayout>
