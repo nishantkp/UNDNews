@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="@dimen/list_item_height"
     android:background="@color/backgroundColor"
-    android:padding="8dp">
+    android:padding="@dimen/default_app_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingRight="8dp">
+            android:paddingRight="@dimen/default_app_padding">
 
             <TextView
                 android:id="@+id/news_section"
@@ -25,10 +25,10 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif"
                 android:maxLines="1"
-                android:paddingBottom="4dp"
+                android:paddingBottom="@dimen/default_list_item_padding"
                 android:text="Sport "
                 android:textColor="@color/listItemCategoryColor"
-                android:textSize="12sp"
+                android:textSize="@dimen/secondary_text_size"
                 android:textStyle="italic" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:maxLines="2"
                 android:text="The Joy of Six: county cricket cult heroes"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="14sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/news_time"
@@ -52,7 +52,7 @@
                 android:fontFamily="sans-serif"
                 android:text="2017-08-23T14:58:42Z"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="12sp" />
+                android:textSize="@dimen/secondary_text_size" />
 
             <TextView
                 android:id="@+id/news_contributor_name"
@@ -60,23 +60,23 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/news_section"
                 android:fontFamily="sans-serif-light"
-                android:paddingLeft="4dp"
+                android:paddingLeft="@dimen/default_list_item_padding"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="12sp"
+                android:textSize="@dimen/secondary_text_size"
                 android:textStyle="italic"
                 tools:text="Nishant Patel" />
         </RelativeLayout>
 
         <View
             android:id="@+id/buffer_view"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/thumbnail_height"
             android:layout_height="match_parent" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/news_thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/thumbnail_height"
+        android:layout_height="@dimen/thumbnail_height"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_weight="1"
