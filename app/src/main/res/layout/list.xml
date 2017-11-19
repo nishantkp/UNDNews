@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_to_refresh"
+    <include layout="@layout/app_bar" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/list"
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipe_to_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
-            android:drawSelectorOnTop="true"
-            android:orientation="vertical" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/backgroundColor"
+                android:drawSelectorOnTop="true"
+                android:orientation="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:id="@+id/empty_view_text_box"
-        style="@style/list_empty_text_view_style"
-        tools:text="@string/news_activity_check_network_connection" />
-</RelativeLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/empty_view_text_box"
+            style="@style/list_empty_text_view_style"
+            tools:text="@string/news_activity_check_network_connection" />
+    </RelativeLayout>
+</LinearLayout>

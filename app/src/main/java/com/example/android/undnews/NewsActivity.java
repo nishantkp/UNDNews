@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.example.android.undnews.Data.Constants;
 
@@ -45,6 +46,9 @@ public class NewsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
+
+        Toolbar toolbar = findViewById(R.id.default_toolbar);
+        setSupportActionBar(toolbar);
 
         // Find the progress bar with id progress_bar in list.xml
         mProgressBar = findViewById(R.id.progress_bar);
