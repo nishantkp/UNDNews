@@ -37,7 +37,7 @@ public class NewsActivity extends AppCompatActivity
     private TextView mEmptyView;
     private String mCorrectUserQueryApi;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
+    private Menu mMenu;
     // Header for list
     private View mListViewHeader;
 
@@ -213,7 +213,7 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_menu, menu);
-
+        mMenu = menu;
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -271,6 +271,12 @@ public class NewsActivity extends AppCompatActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String userQuery = intent.getStringExtra(SearchManager.QUERY);
 
+            // When user submits the query hide the SearchView
+            if(mMenu != null){
+                MenuItem menuItem = mMenu.findItem(R.id.search);
+                SearchView searchView = (SearchView) menuItem.getActionView();
+                searchView.onActionViewCollapsed();
+            }
             // Find the TextView in list_header and set the text to search query
             TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
             userQueryTextHeader.setText(userQuery);
