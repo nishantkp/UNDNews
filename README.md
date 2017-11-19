@@ -16,6 +16,7 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - Network call on background thread
 - Swipe list view to refresh
 - ViewHolder
+- Uri builder
 
 #### New class
 
@@ -45,6 +46,25 @@ The following example demonstrates how to add the SwipeRefreshLayout widget to a
 </android.support.v4.widget.SwipeRefreshLayout>
 ```
 
+#### URI builder
+
+Let's say that I want to create the following URL:
+
+`https://www.myawesomesite.com/turtles/types?type=1&sort=relevance#section-name`
+
+To build this with the `Uri.Builder`, following should be done.
+Refere this [stack overflow](https://stackoverflow.com/questions/19167954/use-uri-builder-in-android-or-create-url-with-variables/19168199#19168199) post.
+```java
+Uri.Builder builder = new Uri.Builder();
+builder.scheme("https")
+    .authority("www.myawesomesite.com")
+    .appendPath("turtles")
+    .appendPath("types")
+    .appendQueryParameter("type", "1")
+    .appendQueryParameter("sort", "relevance")
+    .fragment("section-name");
+String myUrl = builder.build().toString();
+```
 
 #### API
 
