@@ -3,6 +3,9 @@ package com.example.android.undnews;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import com.example.android.undnews.Data.Constants;
+import com.example.android.undnews.Data.Keys;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -97,12 +100,12 @@ public class QueryUtils {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setRequestMethod(Constants.URL_REQUEST_METHOD);
+            urlConnection.setReadTimeout(Constants.URL_READ_TIME_OUT);
+            urlConnection.setConnectTimeout(Constants.URL_CONNECT_TIME_OUT);
             urlConnection.connect();
 
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == Constants.URL_SUCCESS_RESPONSE_CODE) {
                 inputStream = urlConnection.getInputStream();
                 JSONResponse = readFromStream(inputStream);
             } else {
@@ -161,32 +164,32 @@ public class QueryUtils {
         try {
             JSONObject baseJsonObject = new JSONObject(jsonResponse);
             // If JSON object does not contain "response" return null object
-            if (!baseJsonObject.has("response")) {
+            if (!baseJsonObject.has(Keys.JSON_NEWS_OBJECT_KEY)) {
                 return null;
             }
 
-            JSONObject response = baseJsonObject.getJSONObject("response");
-            JSONArray resultsArray = response.getJSONArray("results");
+            JSONObject response = baseJsonObject.getJSONObject(Keys.JSON_NEWS_OBJECT_KEY);
+            JSONArray resultsArray = response.getJSONArray(Keys.JSON_NEWS_ARRAY_KEY);
 
             for (int i = 0; i < resultsArray.length(); i++) {
                 JSONObject newsObject = resultsArray.getJSONObject(i);
 
                 // Get section name
-                String sectionName = newsObject.getString("sectionName");
+                String sectionName = newsObject.getString(Keys.JSON_NEWS_SECTION_KEY);
                 // Get Headline
-                String newsHeadline = newsObject.getString("webTitle");
+                String newsHeadline = newsObject.getString(Keys.JSON_NEWS_HEADLINE_KEY);
                 // Get published time
-                String publishedTime = newsObject.getString("webPublicationDate");
+                String publishedTime = newsObject.getString(Keys.JSON_NEWS_PUBLISHED_TIME_KEY);
                 // Get web Url
-                String webUrl = newsObject.getString("webUrl");
+                String webUrl = newsObject.getString(Keys.JSON_NEWS_URL_KEY);
 
                 Drawable newsThumbnailDrawable = null;
                 // Get thumbnail drawable from URL
-                if (newsObject.has("fields")) {
-                    JSONObject field = newsObject.getJSONObject("fields");
+                if (newsObject.has(Keys.JSON_NEWS_FIELDS_KEY)) {
+                    JSONObject field = newsObject.getJSONObject(Keys.JSON_NEWS_FIELDS_KEY);
                     String newsThumbnailUrlString;
-                    if (field.has("thumbnail")) {
-                        newsThumbnailUrlString = field.getString("thumbnail");
+                    if (field.has(Keys.JSON_NEWS_THUMBNAIL_KEY)) {
+                        newsThumbnailUrlString = field.getString(Keys.JSON_NEWS_THUMBNAIL_KEY);
                         newsThumbnailDrawable = getDrawable(newsThumbnailUrlString);
                     } else {
                         newsThumbnailDrawable = null;
@@ -195,13 +198,13 @@ public class QueryUtils {
 
                 // Get author name
                 String authorName = null;
-                if (newsObject.has("tags")) {
-                    JSONArray tags = newsObject.getJSONArray("tags");
+                if (newsObject.has(Keys.JSON_NEWS_TAGS_KEY)) {
+                    JSONArray tags = newsObject.getJSONArray(Keys.JSON_NEWS_TAGS_KEY);
                     if (!tags.isNull(0)) {
                         // If first element of array is not null then get the author name
                         JSONObject tagsObject = tags.getJSONObject(0);
-                        if (tagsObject.has("webTitle")) {
-                            authorName = tagsObject.getString("webTitle");
+                        if (tagsObject.has(Keys.JSON_NEWS_AUTHOR_NAME_KEY)) {
+                            authorName = tagsObject.getString(Keys.JSON_NEWS_AUTHOR_NAME_KEY);
                         }
                     }
                 }
