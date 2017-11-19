@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.example.android.undnews.Data.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +30,6 @@ public class NewsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 1;
-    private static final String TOP_HEADLINES = "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
-    private static final String API_FIRST_PART = "https://content.guardianapis.com/search?q=";
-    private static final String API_SECOND_PART = "&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test";
-
     private static String LOG_TAG = NewsActivity.class.getName();
 
     private NewsAdapter mNewsAdapter;
@@ -96,7 +93,7 @@ public class NewsActivity extends AppCompatActivity
         });
 
         // When user first starts the app, make the API URL to show some of the latest news
-        mCorrectUserQueryApi = TOP_HEADLINES;
+        mCorrectUserQueryApi = getTopHeadlines();
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -169,6 +166,8 @@ public class NewsActivity extends AppCompatActivity
 
     /**
      * This method is called to generate the correct url string when user provides a search query
+     * Generates the url of type
+     * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
      *
      * @param userQuery search query submitted by user
      * @return correct url string as per query
@@ -176,7 +175,38 @@ public class NewsActivity extends AppCompatActivity
     private String generateCorrectUrlApi(String userQuery) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
-        return API_FIRST_PART + query + API_SECOND_PART;
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(Constants.URL_SCHEME);
+        builder.authority(Constants.URL_AUTHORITY);
+        builder.appendPath(Constants.URL_PATH);
+        builder.appendQueryParameter("q", query);
+        builder.appendQueryParameter("show-fields", "thumbnail,trailText");
+        builder.appendQueryParameter("page-size", "20");
+        builder.appendQueryParameter("show-tags", "contributor");
+        builder.appendQueryParameter("order-by", "relevance");
+        builder.appendQueryParameter("api-key", "test");
+        return builder.toString();
+    }
+
+    /**
+     * This method is called to get the url string to show top headlines
+     * Generates the url of type
+     * "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
+     *
+     * @return url string for top headlines
+     */
+    private String getTopHeadlines() {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(Constants.URL_SCHEME);
+        builder.authority(Constants.URL_AUTHORITY);
+        builder.appendPath(Constants.URL_PATH);
+        builder.appendQueryParameter("q", "");
+        builder.appendQueryParameter("show-fields", "thumbnail,trailText");
+        builder.appendQueryParameter("page-size", "20");
+        builder.appendQueryParameter("show-tags", "contributor");
+        builder.appendQueryParameter("order-by", "newest");
+        builder.appendQueryParameter("api-key", "test");
+        return builder.toString();
     }
 
     // Inflate the actionbar with search menu
@@ -207,7 +237,7 @@ public class NewsActivity extends AppCompatActivity
             // initialize a new loader with API for top headlines to display top headlines
             case R.id.home:
                 // Update the API url to display top headlines
-                mCorrectUserQueryApi = TOP_HEADLINES;
+                mCorrectUserQueryApi = getTopHeadlines();
                 // Find the TextView in list_header and set the text to search query
                 TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
                 userQueryTextHeader.setText(getResources().getString(R.string.list_header_title));
@@ -245,13 +275,9 @@ public class NewsActivity extends AppCompatActivity
             TextView userQueryTextHeader = mListViewHeader.findViewById(R.id.list_header);
             userQueryTextHeader.setText(userQuery);
 
-            // If user hit the enter without actually typing anything perform a default search
-            if (TextUtils.isEmpty(userQuery)) {
-                mCorrectUserQueryApi = API_FIRST_PART + API_SECOND_PART;
-            } else {
-                // Otherwise generate a Url API with user query
-                mCorrectUserQueryApi = generateCorrectUrlApi(userQuery);
-            }
+            // Generate a Url API with user query
+            mCorrectUserQueryApi = generateCorrectUrlApi(userQuery);
+
             // Check the network connection and restart the loader
             mNewsAdapter.clear();
             checkNetworkConnectionAndRestartLoader();
