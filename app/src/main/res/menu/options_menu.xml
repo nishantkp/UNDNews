@@ -6,10 +6,15 @@
         android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/search_title"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_home_white_24dp"
         android:title="@string/menu_home_title"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/settings_title"
+        app:showAsAction="ifRoom" />
 </menu>

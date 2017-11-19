@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+
+    <PreferenceCategory android:title="Filter">
+        <ListPreference
+            android:defaultValue="@string/settings_order_by_default_value"
+            android:entries="@array/settings_order_by_labels"
+            android:entryValues="@array/settings_order_by_values"
+            android:key="@string/settings_order_by_key"
+            android:title="@string/settings_order_by_label" />
+
+        <EditTextPreference
+            android:defaultValue="@string/settings_number_of_articles_default_value"
+            android:inputType="numberDecimal"
+            android:key="@string/settings_number_of_articles_key"
+            android:selectAllOnFocus="true"
+            android:title="@string/settings_number_of_articles_label" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Show">
+        <CheckBoxPreference
+            android:defaultValue="@string/settings_show_author_name_default_value"
+            android:key="@string/settings_show_author_name_key"
+            android:title="@string/settings_show_author_name_label" />
+        <CheckBoxPreference
+            android:defaultValue="@string/settings_show_thumbnail_default_value"
+            android:key="@string/settings_show_thumbnail_key"
+            android:title="@string/settings_show_thumbnail_label" />
+    </PreferenceCategory>
+</PreferenceScreen>

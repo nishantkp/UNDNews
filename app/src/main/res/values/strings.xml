@@ -9,7 +9,10 @@
     <string name="news_activity_check_network_connection">Check network connection!</string>
 
     <!-- Title for search icon in ActionBar [CHAR LIMIT=20]-->
-    <string name="search_title">News search</string>
+    <string name="search_title">Search</string>
+
+    <!-- Title for settings icon in ActionBar [CHAR LIMIT=20] -->
+    <string name="settings_title">Settings</string>
 
     <!-- Hint for search widget in ActionBar [CHAR LIMIT=20] -->
     <string name="search_hint">search</string>
@@ -25,4 +28,32 @@
     <string name="placeholder_text_author">Nishant Patel</string>
     <string name="placeholder_text_time">2017–08–23T14:58:42Z</string>
     <string name="placeholder_text_section">Sport</string>
+
+    <!-- Strings for preference option Order-by [CHAR LIMIT=30] -->
+    <string name="settings_order_by_label">Order by</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default_value" translatable="false">@string/settings_order_by_time_value</string>
+
+    <!-- Label for order by relevance option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_relevance_label">Relevance</string>
+    <string name="settings_order_by_relevance_value" translatable="false">relevance</string>
+
+    <!-- Label for order by time option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_time_label">Newest</string>
+    <string name="settings_order_by_time_value" translatable="false">newest</string>
+
+    <!-- Strings for preference option showing number of articles oer page -->
+    <string name="settings_number_of_articles_label">Number of articles</string>
+    <string name="settings_number_of_articles_key" translatable="false">settings_number_of_articles</string>
+    <string name="settings_number_of_articles_default_value" translatable="false">10</string>
+
+    <!-- Strings for preference option showing thumbnail of article [CHAR LIMIT=20] -->
+    <string name="settings_show_thumbnail_label">Thumbnail</string>
+    <string name="settings_show_thumbnail_key" translatable="false">thumbnail</string>
+    <string name="settings_show_thumbnail_default_value" translatable="false">true</string>
+
+    <!-- Strings for preference option showing author name [CHAR LIMIT=20]-->
+    <string name="settings_show_author_name_label">Author</string>
+    <string name="settings_show_author_name_key" translatable="false">webTitle</string>
+    <string name="settings_show_author_name_default_value" translatable="false">true</string>
 </resources>

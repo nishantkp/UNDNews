@@ -249,6 +249,11 @@ public class NewsActivity extends AppCompatActivity
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();
                 break;
+            case R.id.settings:
+                // When user clicks on settings icon in ActionBar,
+                // start the explicit intent to SettingsActivity
+                Intent settingsIntent = new Intent(NewsActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);
     }
