@@ -5,12 +5,15 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +23,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import com.example.android.undnews.Data.Constants;
 
@@ -41,6 +43,18 @@ public class NewsActivity extends AppCompatActivity
     private Menu mMenu;
     // Header for list
     private View mListViewHeader;
+
+    /* User preference for displaying author name */
+    private boolean mAuthorNamePreference;
+
+    /* User preference for showing thumbnail for news article */
+    private boolean mThumbnailPreference;
+
+    /* User preference for showing number of articles per page */
+    private String mArticleNumberPreference;
+
+    /* User preference for ordering news articles */
+    private String mOrderByPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +110,8 @@ public class NewsActivity extends AppCompatActivity
             }
         });
 
+        // Get the user preferences
+        getUserPreference();
         // When user first starts the app, make the API URL to show some of the latest news
         mCorrectUserQueryApi = getTopHeadlines();
         // Check a network connection and initialize a loader
@@ -170,6 +186,7 @@ public class NewsActivity extends AppCompatActivity
 
     /**
      * This method is called to generate the correct url string when user provides a search query
+     * and user preference
      * Generates the url of type
      * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
      *
@@ -178,36 +195,52 @@ public class NewsActivity extends AppCompatActivity
      */
     private String generateCorrectUrlApi(String userQuery) {
         String query;
+        // Get the user preferences
+        getUserPreference();
         query = userQuery.replaceAll(" ", "%20");
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter("q", query);
-        builder.appendQueryParameter("show-fields", "thumbnail,trailText");
-        builder.appendQueryParameter("page-size", "20");
-        builder.appendQueryParameter("show-tags", "contributor");
-        builder.appendQueryParameter("order-by", "relevance");
+        if (mThumbnailPreference) {
+            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
+        } else {
+            builder.appendQueryParameter("show-fields", "trailText");
+        }
+        builder.appendQueryParameter("page-size", mArticleNumberPreference);
+        if (mAuthorNamePreference) {
+            builder.appendQueryParameter("show-tags", "contributor");
+        }
+        builder.appendQueryParameter("order-by", mOrderByPreference);
         builder.appendQueryParameter("api-key", "test");
         return builder.toString();
     }
 
     /**
-     * This method is called to get the url string to show top headlines
+     * This method is called to get the url string to show top headlines as per user preference
      * Generates the url of type
      * "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
      *
      * @return url string for top headlines
      */
     private String getTopHeadlines() {
+        // Get the user preferences
+        getUserPreference();
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter("q", "");
-        builder.appendQueryParameter("show-fields", "thumbnail,trailText");
-        builder.appendQueryParameter("page-size", "20");
-        builder.appendQueryParameter("show-tags", "contributor");
+        if (mThumbnailPreference) {
+            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
+        } else {
+            builder.appendQueryParameter("show-fields", "trailText");
+        }
+        builder.appendQueryParameter("page-size", mArticleNumberPreference);
+        if (mAuthorNamePreference) {
+            builder.appendQueryParameter("show-tags", "contributor");
+        }
         builder.appendQueryParameter("order-by", "newest");
         builder.appendQueryParameter("api-key", "test");
         return builder.toString();
@@ -281,7 +314,7 @@ public class NewsActivity extends AppCompatActivity
             String userQuery = intent.getStringExtra(SearchManager.QUERY);
 
             // When user submits the query hide the SearchView
-            if(mMenu != null){
+            if (mMenu != null) {
                 MenuItem menuItem = mMenu.findItem(R.id.search);
                 SearchView searchView = (SearchView) menuItem.getActionView();
                 searchView.onActionViewCollapsed();
@@ -312,6 +345,28 @@ public class NewsActivity extends AppCompatActivity
 
         return activeNetworkInfo != null
                 && activeNetworkInfo.isConnected();
+    }
+
+    /**
+     * This method is used to get the user preference
+     */
+    private void getUserPreference(){
+        // Get the preferences provided by user
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // Author name preference
+        mAuthorNamePreference = sharedPreferences.getBoolean(
+                getString(R.string.settings_show_author_name_key), true);
+        // News article thumbnail preference
+        mThumbnailPreference = sharedPreferences.getBoolean(
+                getString(R.string.settings_show_thumbnail_key), true);
+        // Number of articles displayed in one page
+        mArticleNumberPreference = sharedPreferences.getString(
+                getString(R.string.settings_number_of_articles_key)
+                , getString(R.string.settings_number_of_articles_default_value));
+        // Sort article by order type
+        mOrderByPreference = sharedPreferences.getString(
+                getString(R.string.settings_order_by_key)
+                , getString(R.string.settings_order_by_default_value));
     }
 }
 
