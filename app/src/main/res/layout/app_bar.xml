@@ -17,4 +17,6 @@
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
     </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/list" />
 </android.support.design.widget.AppBarLayout>

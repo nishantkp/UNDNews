@@ -19,4 +19,16 @@
     <color name="orange">#FF9900</color>
     <color name="green">#009900</color>
     <color name="blue">#000099</color>
+
+    <!-- Color scheme for quick links in navigation drawer -->
+    <color name="categoryTechnology">#C62828</color>
+    <color name="categoryLifeAndStyle">#1565C0</color>
+    <color name="categorySport">#EF6C00</color>
+    <color name="categoryPolitics">#2E7D32</color>
+    <color name="categoryEducation">#AD1457</color>
+    <color name="categoryFashion">#795548</color>
+    <color name="categoryCulture">#00695C</color>
+
+    <!-- Navigation view item default color -->
+    <color name="navigation_list_color">#454545</color>
 </resources>

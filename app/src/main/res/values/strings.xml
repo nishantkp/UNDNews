@@ -56,4 +56,20 @@
     <string name="settings_show_author_name_label">Author</string>
     <string name="settings_show_author_name_key" translatable="false">webTitle</string>
     <string name="settings_show_author_name_default_value" translatable="false">true</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <!-- Navigation drawer list titles [CHAR LIMIT=20] -->
+    <string name="nav_home_title">Home</string>
+    <string name="nav_settings_title">Settings</string>
+    <string name="nav_sections_title">Section</string>
+    <string name="nav_culture_title">Culture</string>
+    <string name="nav_education_title">Education</string>
+    <string name="nav_fashion_title">Fashion</string>
+    <string name="nav_life_style_title">Life &amp; Style</string>
+    <string name="nav_politics_title">Politics</string>
+    <string name="nav_sports_title">Sports</string>
+    <string name="nav_technology_title">Technology</string>
 </resources>
