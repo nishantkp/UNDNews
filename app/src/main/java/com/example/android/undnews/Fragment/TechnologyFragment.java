@@ -122,7 +122,7 @@ public class TechnologyFragment extends Fragment
         // When user first starts the app, make the API URL to show some of the latest news
         // for technology section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_TECHNOLOHY
+                Constants.SECTION_TECHNOLOGY
                 , mThumbnailPreference
                 , mAuthorNamePreference
                 , mArticleNumberPreference);

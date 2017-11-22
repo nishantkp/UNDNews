@@ -36,7 +36,7 @@ public class Constants {
     public static final String SECTION_LIFE_STYLE = "lifeandstyle";
     public static final String SECTION_POLITICS = "politics";
     public static final String SECTION_SPORTS = "sport";
-    public static final String SECTION_TECHNOLOHY = "technology";
+    public static final String SECTION_TECHNOLOGY = "technology";
 
     Constants() {
         // Empty constructor so no one can accidentally use it
