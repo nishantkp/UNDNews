@@ -29,7 +29,7 @@ public class FragmentHelper {
      * @param orderByPreference       order by preference
      * @return url string as per user query
      */
-    public String generateCorrectUrlApi(String userQuery, boolean thumbnailPreference
+    public static String generateCorrectUrlApi(String userQuery, boolean thumbnailPreference
             , boolean authorPreference, String articleNumberPreference, String orderByPreference) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
@@ -62,7 +62,7 @@ public class FragmentHelper {
      * @param articleNumberPreference article per page
      * @return url string for provided section as per user preference
      */
-    public String getSectionTopHeadlines(String section, boolean thumbnailPreference
+    public static String getSectionTopHeadlines(String section, boolean thumbnailPreference
             , boolean authorPreference, String articleNumberPreference) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
@@ -88,7 +88,7 @@ public class FragmentHelper {
      * @param context context of the app
      * @return If network is available method returns TRUE otherwise false
      */
-    public boolean isNetworkAvailable(Context context) {
+    public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connectivityManager != null;
