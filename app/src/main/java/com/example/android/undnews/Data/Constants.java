@@ -29,6 +29,15 @@ public class Constants {
     public static final String URL_API_KEY = "api-key";
     public static final String URL_API_KEY_VALUE = "test";
 
+    // Sections ids
+    public static final String SECTION_CULTURE = "culture";
+    public static final String SECTION_EDUCATION = "education";
+    public static final String SECTION_FASHION = "fashion";
+    public static final String SECTION_LIFE_STYLE = "lifeandstyle";
+    public static final String SECTION_POLITICS = "politics";
+    public static final String SECTION_SPORTS = "sport";
+    public static final String SECTION_TECHNOLOHY = "technology";
+
     Constants() {
         // Empty constructor so no one can accidentally use it
     }

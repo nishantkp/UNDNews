@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.undnews.Data.Constants;
+import com.example.android.undnews.Data.FragmentHelper;
 import com.example.android.undnews.News;
 import com.example.android.undnews.NewsActivity;
 import com.example.android.undnews.NewsAdapter;
@@ -37,7 +38,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PoliticsFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<List<News>>{
+        implements LoaderManager.LoaderCallbacks<List<News>> {
     private static final int NEWS_LOADER_ID = 3;
     private static String LOG_TAG = NewsActivity.class.getName();
 
@@ -122,7 +123,12 @@ public class PoliticsFragment extends Fragment
         // Get the user preferences
         getUserPreference();
         // When user first starts the app, make the API URL to show some of the latest news
-        mCorrectUserQueryApi = getTopHeadlines();
+        // for politics section
+        mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
+                Constants.SECTION_POLITICS
+                , mThumbnailPreference
+                , mAuthorNamePreference
+                , mArticleNumberPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -160,7 +166,7 @@ public class PoliticsFragment extends Fragment
      * This method is called to check network connection and initialize the loader
      */
     private void checkNetworkConnectionAndInitLoader() {
-        if (isNetworkAvailable()) {
+        if (FragmentHelper.isNetworkAvailable(getContext())) {
             // If the device is connected to network, make progress bar visible and
             // hide empty text view and initialize the loader
             mProgressBar.setVisibility(View.VISIBLE);
@@ -179,7 +185,7 @@ public class PoliticsFragment extends Fragment
      * to load new batch of data
      */
     private void checkNetworkConnectionAndRestartLoader() {
-        if (isNetworkAvailable()) {
+        if (FragmentHelper.isNetworkAvailable(getContext())) {
             // If the device is connected to network, make progress bar visible and
             // hide empty text view and restart the loader
             mProgressBar.setVisibility(View.VISIBLE);
