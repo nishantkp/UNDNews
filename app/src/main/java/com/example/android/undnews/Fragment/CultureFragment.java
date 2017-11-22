@@ -9,7 +9,6 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -34,6 +33,7 @@ import java.util.List;
  */
 public class CultureFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>> {
+
     private static final int NEWS_LOADER_ID = 1;
     private static String LOG_TAG = NewsActivity.class.getName();
 
@@ -42,7 +42,7 @@ public class CultureFragment extends Fragment
     private TextView mEmptyView;
     private String mCorrectUserQueryApi;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private Menu mMenu;
+
     // Header for list
     private View mListViewHeader;
 
