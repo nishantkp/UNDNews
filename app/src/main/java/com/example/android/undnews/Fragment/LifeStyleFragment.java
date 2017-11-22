@@ -1,11 +1,8 @@
 package com.example.android.undnews.Fragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -200,68 +197,6 @@ public class LifeStyleFragment extends Fragment
     }
 
     /**
-     * This method is called to generate the correct url string when user provides a search query
-     * and user preference
-     * Generates the url of type
-     * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
-     *
-     * @param userQuery search query submitted by user
-     * @return correct url string as per query
-     */
-    private String generateCorrectUrlApi(String userQuery) {
-        String query;
-        // Get the user preferences
-        getUserPreference();
-        query = userQuery.replaceAll(" ", "%20");
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(Constants.URL_SCHEME);
-        builder.authority(Constants.URL_AUTHORITY);
-        builder.appendPath(Constants.URL_PATH);
-        builder.appendQueryParameter("q", query);
-        if (mThumbnailPreference) {
-            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
-        } else {
-            builder.appendQueryParameter("show-fields", "trailText");
-        }
-        builder.appendQueryParameter("page-size", mArticleNumberPreference);
-        if (mAuthorNamePreference) {
-            builder.appendQueryParameter("show-tags", "contributor");
-        }
-        builder.appendQueryParameter("order-by", mOrderByPreference);
-        builder.appendQueryParameter("api-key", "test");
-        return builder.toString();
-    }
-
-    /**
-     * This method is called to get the url string to show top headlines as per user preference
-     * Generates the url of type
-     * "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
-     *
-     * @return url string for top headlines
-     */
-    private String getTopHeadlines() {
-        // Get the user preferences
-        getUserPreference();
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(Constants.URL_SCHEME);
-        builder.authority(Constants.URL_AUTHORITY);
-        builder.appendPath("lifeandstyle");
-        builder.appendQueryParameter("q", "");
-        if (mThumbnailPreference) {
-            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
-        } else {
-            builder.appendQueryParameter("show-fields", "trailText");
-        }
-        builder.appendQueryParameter("page-size", mArticleNumberPreference);
-        if (mAuthorNamePreference) {
-            builder.appendQueryParameter("show-tags", "contributor");
-        }
-        builder.appendQueryParameter("order-by", "newest");
-        builder.appendQueryParameter("api-key", "test");
-        return builder.toString();
-    }
-
-    /**
      * This method is called to refresh the content of loader
      */
     private void refreshContent() {
@@ -269,21 +204,6 @@ public class LifeStyleFragment extends Fragment
         checkNetworkConnectionAndRestartLoader();
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is called to check network is available or not
-     *
-     * @return If network is available method returns TRUE otherwise false
-     */
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager =
-                (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        assert connectivityManager != null;
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-        return activeNetworkInfo != null
-                && activeNetworkInfo.isConnected();
     }
 
     /**
