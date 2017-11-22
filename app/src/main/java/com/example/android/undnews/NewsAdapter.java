@@ -41,7 +41,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView authorName;
     }
 
-    NewsAdapter(@NonNull Context context, List<News> newsList) {
+    public NewsAdapter(@NonNull Context context, List<News> newsList) {
         super(context, 0, newsList);
     }
 
