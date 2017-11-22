@@ -196,6 +196,39 @@ public class CultureFragment extends Fragment
     }
 
     /**
+     * This method is called to generate the correct url string when user provides a search query
+     * and user preference
+     * Generates the url of type
+     * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
+     *
+     * @param userQuery search query submitted by user
+     * @return correct url string as per query
+     */
+    private String generateCorrectUrlApi(String userQuery) {
+        String query;
+        // Get the user preferences
+        getUserPreference();
+        query = userQuery.replaceAll(" ", "%20");
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(Constants.URL_SCHEME);
+        builder.authority(Constants.URL_AUTHORITY);
+        builder.appendPath(Constants.URL_PATH);
+        builder.appendQueryParameter("q", query);
+        if (mThumbnailPreference) {
+            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
+        } else {
+            builder.appendQueryParameter("show-fields", "trailText");
+        }
+        builder.appendQueryParameter("page-size", mArticleNumberPreference);
+        if (mAuthorNamePreference) {
+            builder.appendQueryParameter("show-tags", "contributor");
+        }
+        builder.appendQueryParameter("order-by", mOrderByPreference);
+        builder.appendQueryParameter("api-key", "test");
+        return builder.toString();
+    }
+
+    /**
      * This method is called to refresh the content of loader
      */
     private void refreshContent() {

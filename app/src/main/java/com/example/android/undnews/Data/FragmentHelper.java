@@ -1,9 +1,13 @@
 package com.example.android.undnews.Data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
+
+import com.example.android.undnews.R;
 
 /**
  * Helper class for fragments
@@ -85,6 +89,7 @@ public class FragmentHelper {
 
     /**
      * This method is called to check network is available or not
+     *
      * @param context context of the app
      * @return If network is available method returns TRUE otherwise false
      */
@@ -96,5 +101,37 @@ public class FragmentHelper {
 
         return activeNetworkInfo != null
                 && activeNetworkInfo.isConnected();
+    }
+
+    /**
+     * This method is used to get the user preference from Settings
+     *
+     * @param context context of the app
+     * @return UserPreference object containing all the preferences selected by user in Settings
+     */
+    public static UserPreference getUserPreference(Context context) {
+        // Get the preferences provided by user
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        // Author name preference
+        boolean authorNamePreference = sharedPreferences.getBoolean(
+                context.getString(R.string.settings_show_author_name_key), true);
+        // News article thumbnail preference
+        boolean thumbnailPreference = sharedPreferences.getBoolean(
+                context.getString(R.string.settings_show_thumbnail_key), true);
+        // Number of articles displayed in one page
+        String articleNumberPreference = sharedPreferences.getString(
+                context.getString(R.string.settings_number_of_articles_key)
+                , context.getString(R.string.settings_number_of_articles_default_value));
+        // Sort article by order type
+        String orderByPreference = sharedPreferences.getString(
+                context.getString(R.string.settings_order_by_key)
+                , context.getString(R.string.settings_order_by_default_value));
+
+        return new UserPreference(
+                authorNamePreference
+                , thumbnailPreference
+                , articleNumberPreference
+                , orderByPreference);
     }
 }
