@@ -9,35 +9,37 @@
         android:title="@string/nav_home_title" />
 
     <item android:title="@string/nav_sections_title">
-        <menu android:checkableBehavior="single">
-            <item
-                android:id="@+id/nav_culture"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_culture_title" />
-            <item
-                android:id="@+id/nav_education"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_education_title" />
-            <item
-                android:id="@+id/nav_fashion"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_fashion_title" />
-            <item
-                android:id="@+id/nav_life_style"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_life_style_title" />
-            <item
-                android:id="@+id/nav_politics"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_politics_title" />
-            <item
-                android:id="@+id/nav_sports"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_sports_title" />
-            <item
-                android:id="@+id/nav_technology"
-                android:icon="@drawable/navigation_drawer_default_icon"
-                android:title="@string/nav_technology_title" />
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_culture"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_culture_title" />
+                <item
+                    android:id="@+id/nav_education"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_education_title" />
+                <item
+                    android:id="@+id/nav_fashion"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_fashion_title" />
+                <item
+                    android:id="@+id/nav_life_style"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_life_style_title" />
+                <item
+                    android:id="@+id/nav_politics"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_politics_title" />
+                <item
+                    android:id="@+id/nav_sports"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_sports_title" />
+                <item
+                    android:id="@+id/nav_technology"
+                    android:icon="@drawable/navigation_drawer_default_icon"
+                    android:title="@string/nav_technology_title" />
+            </group>
         </menu>
     </item>
 
