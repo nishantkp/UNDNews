@@ -17,6 +17,17 @@ public class Constants {
     public static final String URL_SCHEME = "https";
     public static final String URL_AUTHORITY = "content.guardianapis.com";
     public static final String URL_PATH = "search";
+    public static final String URL_QUERY_PARAMETER = "q";
+    public static final String URL_SHOW_FIELDS = "show-fields";
+    public static final String URL_SHOW_FIELDS_WITH_THUMBNAIL = "thumbnail,trailText";
+    public static final String URL_SHOW_FIELDS_NO_THUMBNAIL = "trailText";
+    public static final String URL_SHOW_TAGS= "show-tags";
+    public static final String URL_SHOW_TAGS_CONTRIBUTOR = "contributor";
+    public static final String URL_ORDER_BY = "order-by";
+    public static final String URL_ORDER_BY_NEWEST = "newest";
+    public static final String URL_PAGE_SIZE = "page-size";
+    public static final String URL_API_KEY = "api-key";
+    public static final String URL_API_KEY_VALUE = "test";
 
     Constants() {
         // Empty constructor so no one can accidentally use it
