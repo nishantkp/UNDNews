@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class LifeStyleFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>>{
-    private static final int NEWS_LOADER_ID = 3;
+    private static final int NEWS_LOADER_ID = 4;
     private static String LOG_TAG = NewsActivity.class.getName();
 
     private NewsAdapter mNewsAdapter;
