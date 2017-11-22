@@ -2,10 +2,8 @@ package com.example.android.undnews.Fragment;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -49,23 +47,9 @@ public class FashionFragment extends Fragment
     // Header for list
     private View mListViewHeader;
 
-    /* User preference for displaying author name */
-    private boolean mAuthorNamePreference;
-
-    /* User preference for showing thumbnail for news article */
-    private boolean mThumbnailPreference;
-
-    /* User preference for showing number of articles per page */
-    private String mArticleNumberPreference;
-
-    /* User preference for ordering news articles */
-    private String mOrderByPreference;
-
-
     public FashionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -205,27 +189,5 @@ public class FashionFragment extends Fragment
         checkNetworkConnectionAndRestartLoader();
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    /**
-     * This method is used to get the user preference
-     */
-    private void getUserPreference() {
-        // Get the preferences provided by user
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        // Author name preference
-        mAuthorNamePreference = sharedPreferences.getBoolean(
-                getString(R.string.settings_show_author_name_key), true);
-        // News article thumbnail preference
-        mThumbnailPreference = sharedPreferences.getBoolean(
-                getString(R.string.settings_show_thumbnail_key), true);
-        // Number of articles displayed in one page
-        mArticleNumberPreference = sharedPreferences.getString(
-                getString(R.string.settings_number_of_articles_key)
-                , getString(R.string.settings_number_of_articles_default_value));
-        // Sort article by order type
-        mOrderByPreference = sharedPreferences.getString(
-                getString(R.string.settings_order_by_key)
-                , getString(R.string.settings_order_by_default_value));
     }
 }

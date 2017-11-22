@@ -1,10 +1,8 @@
 package com.example.android.undnews.Fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -48,23 +46,9 @@ public class CultureFragment extends Fragment
     // Header for list
     private View mListViewHeader;
 
-    /* User preference for displaying author name */
-    private boolean mAuthorNamePreference;
-
-    /* User preference for showing thumbnail for news article */
-    private boolean mThumbnailPreference;
-
-    /* User preference for showing number of articles per page */
-    private String mArticleNumberPreference;
-
-    /* User preference for ordering news articles */
-    private String mOrderByPreference;
-
-
     public CultureFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -197,39 +181,6 @@ public class CultureFragment extends Fragment
     }
 
     /**
-     * This method is called to generate the correct url string when user provides a search query
-     * and user preference
-     * Generates the url of type
-     * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
-     *
-     * @param userQuery search query submitted by user
-     * @return correct url string as per query
-     */
-    private String generateCorrectUrlApi(String userQuery) {
-        String query;
-        // Get the user preferences
-        getUserPreference();
-        query = userQuery.replaceAll(" ", "%20");
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(Constants.URL_SCHEME);
-        builder.authority(Constants.URL_AUTHORITY);
-        builder.appendPath(Constants.URL_PATH);
-        builder.appendQueryParameter("q", query);
-        if (mThumbnailPreference) {
-            builder.appendQueryParameter("show-fields", "thumbnail,trailText");
-        } else {
-            builder.appendQueryParameter("show-fields", "trailText");
-        }
-        builder.appendQueryParameter("page-size", mArticleNumberPreference);
-        if (mAuthorNamePreference) {
-            builder.appendQueryParameter("show-tags", "contributor");
-        }
-        builder.appendQueryParameter("order-by", mOrderByPreference);
-        builder.appendQueryParameter("api-key", "test");
-        return builder.toString();
-    }
-
-    /**
      * This method is called to refresh the content of loader
      */
     private void refreshContent() {
@@ -238,27 +189,4 @@ public class CultureFragment extends Fragment
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
     }
-
-    /**
-     * This method is used to get the user preference
-     */
-    private void getUserPreference() {
-        // Get the preferences provided by user
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        // Author name preference
-        mAuthorNamePreference = sharedPreferences.getBoolean(
-                getString(R.string.settings_show_author_name_key), true);
-        // News article thumbnail preference
-        mThumbnailPreference = sharedPreferences.getBoolean(
-                getString(R.string.settings_show_thumbnail_key), true);
-        // Number of articles displayed in one page
-        mArticleNumberPreference = sharedPreferences.getString(
-                getString(R.string.settings_number_of_articles_key)
-                , getString(R.string.settings_number_of_articles_default_value));
-        // Sort article by order type
-        mOrderByPreference = sharedPreferences.getString(
-                getString(R.string.settings_order_by_key)
-                , getString(R.string.settings_order_by_default_value));
-    }
-
 }
