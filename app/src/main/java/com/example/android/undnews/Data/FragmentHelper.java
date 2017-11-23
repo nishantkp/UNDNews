@@ -119,6 +119,39 @@ public class FragmentHelper {
     }
 
     /**
+     * This method is called to get the url string to show news for user query query
+     * for section as per user preference
+     *
+     * @param section                 section name according to fragments
+     * @param userQuery               query input by user
+     * @param thumbnailPreference     thumbnail preference
+     * @param authorPreference        author preference
+     * @param articleNumberPreference article per page
+     * @return url string for provided section as per user preference
+     */
+    public static String getSectionSearchQueryNews(String section, String userQuery
+            , boolean thumbnailPreference, boolean authorPreference
+            , String articleNumberPreference) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(Constants.URL_SCHEME);
+        builder.authority(Constants.URL_AUTHORITY);
+        builder.appendPath(section);
+        builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, userQuery);
+        if (thumbnailPreference) {
+            builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
+        } else {
+            builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_NO_THUMBNAIL);
+        }
+        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, articleNumberPreference);
+        if (authorPreference) {
+            builder.appendQueryParameter(Constants.URL_SHOW_TAGS, Constants.URL_SHOW_TAGS_CONTRIBUTOR);
+        }
+        builder.appendQueryParameter(Constants.URL_ORDER_BY, Constants.URL_ORDER_BY_NEWEST);
+        builder.appendQueryParameter(Constants.URL_API_KEY, Constants.URL_API_KEY_VALUE);
+        return builder.toString();
+    }
+
+    /**
      * This method is called to check network is available or not
      *
      * @param context context of the app
