@@ -135,8 +135,9 @@ public class FragmentHelper {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
-        builder.appendPath(section);
+        builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, userQuery);
+        builder.appendQueryParameter("section", section);
         if (thumbnailPreference) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {
