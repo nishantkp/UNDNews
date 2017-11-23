@@ -64,7 +64,7 @@ public class FragmentHelper {
      * @param orderByPreference       order by preference
      * @return url string as per user query
      */
-    public static String generateCorrectUrlApi(String userQuery, boolean thumbnailPreference
+    public static String getGeneralNewsPerUserQuery(String userQuery, boolean thumbnailPreference
             , boolean authorPreference, String articleNumberPreference, String orderByPreference) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
