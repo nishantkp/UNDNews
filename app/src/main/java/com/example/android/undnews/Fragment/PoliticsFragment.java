@@ -10,11 +10,15 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.android.undnews.Data.Constants;
@@ -36,7 +40,7 @@ public class PoliticsFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 5;
-    private static String LOG_TAG = NewsActivity.class.getName();
+    private static String LOG_TAG = PoliticsFragment.class.getName();
 
     private NewsAdapter mNewsAdapter;
     private ProgressBar mProgressBar;
@@ -56,6 +60,8 @@ public class PoliticsFragment extends Fragment
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.list, container, false);
 
+        // display addition options menu in action bar
+        setHasOptionsMenu(true);
         // Find the progress bar with id progress_bar in list.xml
         mProgressBar = rootView.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.GONE);
@@ -119,6 +125,28 @@ public class PoliticsFragment extends Fragment
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.fragment_search_menu, menu);
+        MenuItem item = menu.findItem(R.id.search_fragment);
+        SearchView searchView = new SearchView(((NewsActivity) getContext()).getSupportActionBar().getThemedContext());
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setActionView(searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String userQuery) {
+                Log.i(LOG_TAG, "user submitted query : " + userQuery);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String userQuery) {
+                return false;
+            }
+        });
+    }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
