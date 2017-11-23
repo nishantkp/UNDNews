@@ -137,7 +137,18 @@ public class PoliticsFragment extends Fragment
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String userQuery) {
-                Log.i(LOG_TAG, "user submitted query : " + userQuery);
+                // Get the user preference
+                UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
+                // Generate the url string as per user preference and user submitted query
+                mCorrectUserQueryApi = FragmentHelper.getSectionSearchQueryNews(
+                        Constants.SECTION_POLITICS
+                        , userQuery
+                        , userPreference.getThumbnailPreference()
+                        , userPreference.getAuthorPreference()
+                        , userPreference.getArticleNumberPreference());
+                // Check the network connection and restart the loader
+                mNewsAdapter.clear();
+                checkNetworkConnectionAndRestartLoader();
                 return false;
             }
 
