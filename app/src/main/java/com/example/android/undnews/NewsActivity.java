@@ -32,6 +32,7 @@ import com.example.android.undnews.Data.Constants;
 import com.example.android.undnews.Fragment.CultureFragment;
 import com.example.android.undnews.Fragment.EducationFragment;
 import com.example.android.undnews.Fragment.FashionFragment;
+import com.example.android.undnews.Fragment.HomeFragment;
 import com.example.android.undnews.Fragment.LifeStyleFragment;
 import com.example.android.undnews.Fragment.PoliticsFragment;
 import com.example.android.undnews.Fragment.SportsFragment;
@@ -402,6 +403,9 @@ public class NewsActivity extends AppCompatActivity
         //TODO define behaviour of items in navigation view
         switch (id) {
             case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_body, new HomeFragment())
+                        .commit();
                 getSupportActionBar().setTitle(getString(R.string.app_name));
                 break;
             case R.id.nav_culture:
