@@ -113,10 +113,7 @@ public class TechnologyFragment extends Fragment
         // When user first starts the app, make the API URL to show some of the latest news
         // for culture section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_TECHNOLOGY
-                , userPreference.getThumbnailPreference()
-                , userPreference.getAuthorPreference()
-                , userPreference.getArticleNumberPreference());
+                Constants.SECTION_TECHNOLOGY, userPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -141,11 +138,7 @@ public class TechnologyFragment extends Fragment
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
                 mCorrectUserQueryApi = FragmentHelper.getSectionSearchQueryNews(
-                        Constants.SECTION_TECHNOLOGY
-                        , userQuery
-                        , userPreference.getThumbnailPreference()
-                        , userPreference.getAuthorPreference()
-                        , userPreference.getArticleNumberPreference());
+                        Constants.SECTION_TECHNOLOGY, userQuery, userPreference);
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();

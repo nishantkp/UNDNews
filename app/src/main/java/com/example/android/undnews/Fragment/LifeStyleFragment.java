@@ -37,7 +37,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class LifeStyleFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<List<News>>{
+        implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 4;
     private static String LOG_TAG = LifeStyleFragment.class.getName();
@@ -114,10 +114,7 @@ public class LifeStyleFragment extends Fragment
         // When user first starts the app, make the API URL to show some of the latest news
         // for culture section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_LIFE_STYLE
-                , userPreference.getThumbnailPreference()
-                , userPreference.getAuthorPreference()
-                , userPreference.getArticleNumberPreference());
+                Constants.SECTION_LIFE_STYLE, userPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -142,11 +139,7 @@ public class LifeStyleFragment extends Fragment
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
                 mCorrectUserQueryApi = FragmentHelper.getSectionSearchQueryNews(
-                        Constants.SECTION_LIFE_STYLE
-                        , userQuery
-                        , userPreference.getThumbnailPreference()
-                        , userPreference.getAuthorPreference()
-                        , userPreference.getArticleNumberPreference());
+                        Constants.SECTION_LIFE_STYLE, userQuery, userPreference);
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();

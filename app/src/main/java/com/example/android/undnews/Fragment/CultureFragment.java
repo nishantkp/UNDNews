@@ -112,10 +112,7 @@ public class CultureFragment extends Fragment
         // When user first starts the app, make the API URL to show some of the latest news
         // for culture section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_CULTURE
-                , userPreference.getThumbnailPreference()
-                , userPreference.getAuthorPreference()
-                , userPreference.getArticleNumberPreference());
+                Constants.SECTION_CULTURE, userPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -140,11 +137,7 @@ public class CultureFragment extends Fragment
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
                 mCorrectUserQueryApi = FragmentHelper.getSectionSearchQueryNews(
-                        Constants.SECTION_CULTURE
-                        , userQuery
-                        , userPreference.getThumbnailPreference()
-                        , userPreference.getAuthorPreference()
-                        , userPreference.getArticleNumberPreference());
+                        Constants.SECTION_CULTURE, userQuery, userPreference);
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();

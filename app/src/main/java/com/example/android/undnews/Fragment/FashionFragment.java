@@ -37,7 +37,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FashionFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<List<News>>{
+        implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 3;
     private static String LOG_TAG = FashionFragment.class.getName();
@@ -113,10 +113,7 @@ public class FashionFragment extends Fragment
         // When user first starts the app, make the API URL to show some of the latest news
         // for culture section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_FASHION
-                , userPreference.getThumbnailPreference()
-                , userPreference.getAuthorPreference()
-                , userPreference.getArticleNumberPreference());
+                Constants.SECTION_FASHION, userPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -141,11 +138,7 @@ public class FashionFragment extends Fragment
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
                 mCorrectUserQueryApi = FragmentHelper.getSectionSearchQueryNews(
-                        Constants.SECTION_FASHION
-                        , userQuery
-                        , userPreference.getThumbnailPreference()
-                        , userPreference.getAuthorPreference()
-                        , userPreference.getArticleNumberPreference());
+                        Constants.SECTION_FASHION, userQuery, userPreference);
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();

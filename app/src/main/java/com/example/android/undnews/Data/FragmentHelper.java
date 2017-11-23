@@ -25,25 +25,22 @@ public class FragmentHelper {
      * Generates the url of type
      * "https://content.guardianapis.com/search?q=&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=newest&api-key=test";
      *
-     * @param thumbnailPreference     thumbnail preference provided by user in Settings
-     * @param authorPreference        author preference provided by user in Settings
-     * @param articleNumberPreference news article per page provided by user in Settings
+     * @param userPreference user preference from Settings
      * @return url string to get general top headlines
      */
-    public static String getTopHeadlines(boolean thumbnailPreference
-            , boolean authorPreference, String articleNumberPreference) {
+    public static String getTopHeadlines(UserPreference userPreference) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, "");
-        if (thumbnailPreference) {
+        if (userPreference.getThumbnailPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_NO_THUMBNAIL);
         }
-        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, articleNumberPreference);
-        if (authorPreference) {
+        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, userPreference.getArticleNumberPreference());
+        if (userPreference.getAuthorPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_TAGS, Constants.URL_SHOW_TAGS_CONTRIBUTOR);
         }
         builder.appendQueryParameter(Constants.URL_ORDER_BY, Constants.URL_ORDER_BY_NEWEST);
@@ -57,15 +54,11 @@ public class FragmentHelper {
      * Generates the url of type
      * https://content.guardianapis.com/search?q=USER_QUERY&show-fields=thumbnail,trailText&page-size=20&show-tags=contributor&order-by=relevance&api-key=test
      *
-     * @param userQuery               query submitted by user from search widget
-     * @param thumbnailPreference     thumbnail preference
-     * @param authorPreference        author name preference
-     * @param articleNumberPreference article numbers per page
-     * @param orderByPreference       order by preference
+     * @param userQuery      query submitted by user from search widget
+     * @param userPreference user preference in Settings
      * @return url string as per user query
      */
-    public static String getGeneralNewsPerUserQuery(String userQuery, boolean thumbnailPreference
-            , boolean authorPreference, String articleNumberPreference, String orderByPreference) {
+    public static String getGeneralNewsPerUserQuery(String userQuery, UserPreference userPreference) {
         String query;
         query = userQuery.replaceAll(" ", "%20");
         Uri.Builder builder = new Uri.Builder();
@@ -73,16 +66,16 @@ public class FragmentHelper {
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, query);
-        if (thumbnailPreference) {
+        if (userPreference.getThumbnailPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_NO_THUMBNAIL);
         }
-        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, articleNumberPreference);
-        if (authorPreference) {
+        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, userPreference.getArticleNumberPreference());
+        if (userPreference.getAuthorPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_TAGS, Constants.URL_SHOW_TAGS_CONTRIBUTOR);
         }
-        builder.appendQueryParameter(Constants.URL_ORDER_BY, orderByPreference);
+        builder.appendQueryParameter(Constants.URL_ORDER_BY, userPreference.getOrderByPreference());
         builder.appendQueryParameter(Constants.URL_API_KEY, Constants.URL_API_KEY_VALUE);
         return builder.toString();
     }
@@ -91,26 +84,23 @@ public class FragmentHelper {
      * This method is called to get the url string to show top headlines
      * for section as per user preference
      *
-     * @param section                 section name according to fragments
-     * @param thumbnailPreference     thumbnail preference
-     * @param authorPreference        author preference
-     * @param articleNumberPreference article per page
+     * @param section        section name according to fragments
+     * @param userPreference user preference from Settings
      * @return url string for provided section as per user preference
      */
-    public static String getSectionTopHeadlines(String section, boolean thumbnailPreference
-            , boolean authorPreference, String articleNumberPreference) {
+    public static String getSectionTopHeadlines(String section, UserPreference userPreference) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(section);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, "");
-        if (thumbnailPreference) {
+        if (userPreference.getThumbnailPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_NO_THUMBNAIL);
         }
-        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, articleNumberPreference);
-        if (authorPreference) {
+        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, userPreference.getArticleNumberPreference());
+        if (userPreference.getAuthorPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_TAGS, Constants.URL_SHOW_TAGS_CONTRIBUTOR);
         }
         builder.appendQueryParameter(Constants.URL_ORDER_BY, Constants.URL_ORDER_BY_NEWEST);
@@ -122,29 +112,26 @@ public class FragmentHelper {
      * This method is called to get the url string to show news for user query query
      * for section as per user preference
      *
-     * @param section                 section name according to fragments
-     * @param userQuery               query input by user
-     * @param thumbnailPreference     thumbnail preference
-     * @param authorPreference        author preference
-     * @param articleNumberPreference article per page
+     * @param section        section name according to fragments
+     * @param userQuery      query input by user
+     * @param userPreference user preference from Settings
      * @return url string for provided section as per user preference
      */
     public static String getSectionSearchQueryNews(String section, String userQuery
-            , boolean thumbnailPreference, boolean authorPreference
-            , String articleNumberPreference) {
+            , UserPreference userPreference) {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(Constants.URL_SCHEME);
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, userQuery);
         builder.appendQueryParameter("section", section);
-        if (thumbnailPreference) {
+        if (userPreference.getThumbnailPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_NO_THUMBNAIL);
         }
-        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, articleNumberPreference);
-        if (authorPreference) {
+        builder.appendQueryParameter(Constants.URL_PAGE_SIZE, userPreference.getArticleNumberPreference());
+        if (userPreference.getAuthorPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_TAGS, Constants.URL_SHOW_TAGS_CONTRIBUTOR);
         }
         builder.appendQueryParameter(Constants.URL_ORDER_BY, Constants.URL_ORDER_BY_NEWEST);

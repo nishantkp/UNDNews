@@ -110,10 +110,7 @@ public class HomeFragment extends Fragment
         // Get the user preferences
         UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
         // When user first starts the app, make the API URL to show some of the latest news
-        mCorrectUserQueryApi = FragmentHelper.getTopHeadlines(
-                userPreference.getThumbnailPreference()
-                , userPreference.getAuthorPreference()
-                , userPreference.getArticleNumberPreference());
+        mCorrectUserQueryApi = FragmentHelper.getTopHeadlines(userPreference);
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -137,11 +134,7 @@ public class HomeFragment extends Fragment
                 // Get the user preference
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
-                mCorrectUserQueryApi = FragmentHelper.getGeneralNewsPerUserQuery(userQuery
-                        , userPreference.getThumbnailPreference()
-                        , userPreference.getAuthorPreference()
-                        , userPreference.getArticleNumberPreference()
-                        , userPreference.getOrderByPreference());
+                mCorrectUserQueryApi = FragmentHelper.getGeneralNewsPerUserQuery(userQuery, userPreference);
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();
