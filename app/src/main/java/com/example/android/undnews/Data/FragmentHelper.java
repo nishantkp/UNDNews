@@ -124,7 +124,7 @@ public class FragmentHelper {
         builder.authority(Constants.URL_AUTHORITY);
         builder.appendPath(Constants.URL_PATH);
         builder.appendQueryParameter(Constants.URL_QUERY_PARAMETER, userQuery);
-        builder.appendQueryParameter("section", section);
+        builder.appendQueryParameter(Constants.URL_SECTION, section);
         if (userPreference.getThumbnailPreference()) {
             builder.appendQueryParameter(Constants.URL_SHOW_FIELDS, Constants.URL_SHOW_FIELDS_WITH_THUMBNAIL);
         } else {

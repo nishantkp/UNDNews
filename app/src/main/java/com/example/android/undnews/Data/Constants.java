@@ -18,10 +18,11 @@ public class Constants {
     public static final String URL_AUTHORITY = "content.guardianapis.com";
     public static final String URL_PATH = "search";
     public static final String URL_QUERY_PARAMETER = "q";
+    public static final String URL_SECTION = "section";
     public static final String URL_SHOW_FIELDS = "show-fields";
     public static final String URL_SHOW_FIELDS_WITH_THUMBNAIL = "thumbnail,trailText";
     public static final String URL_SHOW_FIELDS_NO_THUMBNAIL = "trailText";
-    public static final String URL_SHOW_TAGS= "show-tags";
+    public static final String URL_SHOW_TAGS = "show-tags";
     public static final String URL_SHOW_TAGS_CONTRIBUTOR = "contributor";
     public static final String URL_ORDER_BY = "order-by";
     public static final String URL_ORDER_BY_NEWEST = "newest";
