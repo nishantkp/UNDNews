@@ -1,4 +1,4 @@
-package com.example.android.undnews.Data;
+package com.example.android.undnews.Object;
 
 /**
  * User preference object

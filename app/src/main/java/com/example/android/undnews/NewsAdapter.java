@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.undnews.Object.News;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

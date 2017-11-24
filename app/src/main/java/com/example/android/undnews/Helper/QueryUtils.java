@@ -1,10 +1,11 @@
-package com.example.android.undnews;
+package com.example.android.undnews.Helper;
 
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.example.android.undnews.Data.Constants;
 import com.example.android.undnews.Data.Keys;
+import com.example.android.undnews.Object.News;
 
 import org.json.JSONArray;
 import org.json.JSONException;

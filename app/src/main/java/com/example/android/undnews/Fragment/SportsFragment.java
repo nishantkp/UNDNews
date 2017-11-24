@@ -22,9 +22,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.android.undnews.Data.Constants;
-import com.example.android.undnews.Data.FragmentHelper;
-import com.example.android.undnews.Data.UserPreference;
-import com.example.android.undnews.News;
+import com.example.android.undnews.Helper.FragmentHelper;
+import com.example.android.undnews.Object.UserPreference;
+import com.example.android.undnews.Object.News;
 import com.example.android.undnews.NewsActivity;
 import com.example.android.undnews.NewsAdapter;
 import com.example.android.undnews.NewsLoaderFragment;

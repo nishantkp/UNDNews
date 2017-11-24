@@ -2,6 +2,9 @@ package com.example.android.undnews;
 
 import android.content.Context;
 
+import com.example.android.undnews.Helper.QueryUtils;
+import com.example.android.undnews.Object.News;
+
 import java.util.List;
 
 /**

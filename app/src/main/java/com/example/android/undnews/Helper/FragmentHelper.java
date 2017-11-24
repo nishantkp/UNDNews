@@ -1,4 +1,4 @@
-package com.example.android.undnews.Data;
+package com.example.android.undnews.Helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
+import com.example.android.undnews.Data.Constants;
+import com.example.android.undnews.Object.UserPreference;
 import com.example.android.undnews.R;
 
 /**

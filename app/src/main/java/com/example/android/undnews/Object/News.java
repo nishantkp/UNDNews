@@ -1,4 +1,4 @@
-package com.example.android.undnews;
+package com.example.android.undnews.Object;
 
 import android.graphics.drawable.Drawable;
 
