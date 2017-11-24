@@ -22,11 +22,11 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.android.undnews.Helper.FragmentHelper;
-import com.example.android.undnews.Object.UserPreference;
-import com.example.android.undnews.Object.News;
 import com.example.android.undnews.NewsActivity;
 import com.example.android.undnews.NewsAdapter;
 import com.example.android.undnews.NewsLoaderFragment;
+import com.example.android.undnews.Object.News;
+import com.example.android.undnews.Object.UserPreference;
 import com.example.android.undnews.R;
 
 import java.util.ArrayList;
@@ -119,6 +119,24 @@ public class HomeFragment extends Fragment
         checkNetworkConnectionAndInitLoader();
 
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.home_fragment:
+                // Get the user preferences
+                UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
+                // When user selects the home icon, make the API URL to show some of the latest news
+                mCorrectUserQueryApi = FragmentHelper.getTopHeadlines(userPreference);
+                // clear out the news and restart the loader
+                mNewsAdapter.clear();
+                checkNetworkConnectionAndRestartLoader();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

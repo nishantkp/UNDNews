@@ -125,6 +125,26 @@ public class FashionFragment extends Fragment
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.home_fragment:
+                // Get the user preferences
+                UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
+                // When user selects the home icon, make the API URL to show some of the latest news
+                // for fashion section
+                mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
+                        Constants.SECTION_FASHION, userPreference);
+                // clear out the news and restart the loader
+                mNewsAdapter.clear();
+                checkNetworkConnectionAndRestartLoader();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
