@@ -52,63 +52,71 @@ public class NewsActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        //TODO define behaviour of items in navigation view
         switch (id) {
             case R.id.nav_home:
+                /** When user selects home from navigation drawer, start {@link HomeFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new HomeFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.app_name));
                 break;
             case R.id.nav_culture:
+                /** When user selects culture from navigation drawer, start {@link CultureFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new CultureFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_culture_title));
                 break;
             case R.id.nav_education:
+                /** When user selects education from navigation drawer, start {@link EducationFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new EducationFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_education_title));
                 break;
             case R.id.nav_fashion:
+                /** When user selects fashion from navigation drawer, start {@link FashionFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new FashionFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_fashion_title));
                 break;
             case R.id.nav_life_style:
+                /** When user selects life and style from navigation drawer, start {@link LifeStyleFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new LifeStyleFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_life_style_title));
                 break;
             case R.id.nav_politics:
+                /** When user selects politics from navigation drawer, start {@link PoliticsFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new PoliticsFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_politics_title));
                 break;
             case R.id.nav_sports:
+                /** When user sport home from navigation drawer, start {@link SportsFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new SportsFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_sports_title));
                 break;
             case R.id.nav_technology:
+                /** When user technology home from navigation drawer, start {@link TechnologyFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new TechnologyFragment())
                         .commit();
                 getSupportActionBar().setTitle(getString(R.string.nav_technology_title));
                 break;
             case R.id.nav_settings:
-                // When user selects the settings from navigation drawer start the SettingsActivity
+                /** When user selects settings from navigation drawer, start {@link SettingsActivity} */
                 Intent settingActivityIntent = new Intent(NewsActivity.this, SettingsActivity.class);
                 startActivity(settingActivityIntent);
                 break;
         }
 
+        // When user selects an item from navigation drawer, close it
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -116,6 +124,7 @@ public class NewsActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        // When user presses the back button and navigation drawer is open, close the drawer first
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
