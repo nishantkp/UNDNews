@@ -59,6 +59,8 @@ public class HomeFragment extends Fragment
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.list, container, false);
 
+        // Set actionbar title
+        ((NewsActivity)getActivity()).setActionBarTitle(getString(R.string.app_name));
         // display addition options menu in action bar
         setHasOptionsMenu(true);
         // Find the progress bar with id progress_bar in list.xml

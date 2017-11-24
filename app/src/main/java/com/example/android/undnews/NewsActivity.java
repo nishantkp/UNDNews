@@ -59,56 +59,48 @@ public class NewsActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new HomeFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.app_name));
                 break;
             case R.id.nav_culture:
                 /** When user selects culture from navigation drawer, start {@link CultureFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new CultureFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_culture_title));
                 break;
             case R.id.nav_education:
                 /** When user selects education from navigation drawer, start {@link EducationFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new EducationFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_education_title));
                 break;
             case R.id.nav_fashion:
                 /** When user selects fashion from navigation drawer, start {@link FashionFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new FashionFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_fashion_title));
                 break;
             case R.id.nav_life_style:
                 /** When user selects life and style from navigation drawer, start {@link LifeStyleFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new LifeStyleFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_life_style_title));
                 break;
             case R.id.nav_politics:
                 /** When user selects politics from navigation drawer, start {@link PoliticsFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new PoliticsFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_politics_title));
                 break;
             case R.id.nav_sports:
                 /** When user sport home from navigation drawer, start {@link SportsFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new SportsFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_sports_title));
                 break;
             case R.id.nav_technology:
                 /** When user technology home from navigation drawer, start {@link TechnologyFragment} */
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_body, new TechnologyFragment())
                         .commit();
-                getSupportActionBar().setTitle(getString(R.string.nav_technology_title));
                 break;
             case R.id.nav_settings:
                 /** When user selects settings from navigation drawer, start {@link SettingsActivity} */
@@ -132,5 +124,10 @@ public class NewsActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    // Change the title of action bar as per fragment
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
     }
 }
