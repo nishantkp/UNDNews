@@ -29,12 +29,15 @@ public class NewsAdapter extends ArrayAdapter<News> {
     // Tag for log messages
     private static final String LOG_TAG = NewsAdapter.class.getName();
 
+    // If the content is for section or not
+    private boolean mIsSection;
+
     /**
      * ViewHolder for list item in res/layout/news_list_item.xml
      * View holder that cashes the views so we do not need to use findViewById every time
      * So scrolling of list view becomes more smooth
      */
-    static class ViewHolderListItem{
+    static class ViewHolderListItem {
         TextView sectionName;
         TextView headline;
         ImageView thumbnail;
@@ -43,8 +46,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView authorName;
     }
 
-    public NewsAdapter(@NonNull Context context, List<News> newsList) {
+    public NewsAdapter(@NonNull Context context, List<News> newsList, boolean isSection) {
         super(context, 0, newsList);
+        mIsSection = isSection;
     }
 
     @NonNull
@@ -77,7 +81,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // Set the section name
         assert currentNewsDetail != null;
-        viewHolder.sectionName.setText(currentNewsDetail.getSection());
+        if (mIsSection) {
+            // If item is begin displayed in section fragment,
+            // there is no need to display the section name in each list item so
+            // hide the section name TextView
+            viewHolder.sectionName.setVisibility(View.INVISIBLE);
+        } else {
+            // Other wise it's general, so set the section name TextView
+            viewHolder.sectionName.setVisibility(View.VISIBLE);
+            viewHolder.sectionName.setText(currentNewsDetail.getSection());
+        }
 
         // Set the headline
         viewHolder.headline.setText(currentNewsDetail.getHeadline());

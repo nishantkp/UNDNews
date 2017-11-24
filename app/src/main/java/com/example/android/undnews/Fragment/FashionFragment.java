@@ -96,7 +96,7 @@ public class FashionFragment extends Fragment
         listView.setEmptyView(mEmptyView);
 
         // Create a empty custom adapter and set it on ListView
-        mNewsAdapter = new NewsAdapter(getContext(), new ArrayList<News>());
+        mNewsAdapter = new NewsAdapter(getContext(), new ArrayList<News>(), true);
         listView.setAdapter(mNewsAdapter);
 
         // Attach a listener on list item to open a link for the news item in web browser
