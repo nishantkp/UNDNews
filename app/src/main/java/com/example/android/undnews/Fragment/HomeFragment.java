@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.fragment_search_menu, menu);
-        MenuItem item = menu.findItem(R.id.search_fragment);
+        final MenuItem item = menu.findItem(R.id.search_fragment);
         SearchView searchView = new SearchView(((NewsActivity) getContext()).getSupportActionBar().getThemedContext());
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         item.setActionView(searchView);
@@ -150,6 +150,11 @@ public class HomeFragment extends Fragment
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
                 mCorrectUserQueryApi = FragmentHelper.getGeneralNewsPerUserQuery(userQuery, userPreference);
+
+                // collapse search view when user submits the query
+                SearchView searchView = (SearchView) item.getActionView();
+                searchView.onActionViewCollapsed();
+
                 // Check the network connection and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();
