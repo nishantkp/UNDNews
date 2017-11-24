@@ -87,8 +87,8 @@ public class HomeFragment extends Fragment
 
         // Find the ListView with id list in list.xml
         ListView listView = rootView.findViewById(R.id.list);
-        // Attach a header to listView
-        listView.addHeaderView(mListViewHeader);
+        // Attach a header to listView and make it not selectable
+        listView.addHeaderView(mListViewHeader, getResources().getString(R.string.list_header_title), false);
         // Set empty view on ListView in order to display "no data" and "check network connection"
         listView.setEmptyView(mEmptyView);
 
