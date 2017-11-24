@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 /**
+ * News loader form fragments
  * Created by Nishant on 11/21/2017.
  */
 
@@ -14,7 +15,7 @@ public class NewsLoaderFragment
     private String mUrl;
 
     /**
-     * NewsLoader constructor
+     * NewsLoaderFragment constructor
      *
      * @param context  context of app
      * @param queryUrl url string as per user input in SearchView
