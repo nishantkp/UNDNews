@@ -109,12 +109,8 @@ public class CultureFragment extends Fragment
             }
         });
 
-        // Get the user preferences
-        UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
-        // When user first starts the app, make the API URL to show some of the latest news
-        // for culture section
-        mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                Constants.SECTION_CULTURE, userPreference);
+        // get the latest news
+        getLatestNews();
         // Check a network connection and initialize a loader
         // We have to initialize a loader in NewsActivity in order to load data when activity
         // restarts, meaning when device orientation changes
@@ -128,17 +124,13 @@ public class CultureFragment extends Fragment
         int id = item.getItemId();
         switch (id){
             case R.id.home_fragment:
-                // Get the user preferences
-                UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // When user selects the home icon, make the API URL to show some of the latest news
                 // for culture section
-                mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
-                        Constants.SECTION_CULTURE, userPreference);
+                getLatestNews();
                 // clear out the news and restart the loader
                 mNewsAdapter.clear();
                 checkNetworkConnectionAndRestartLoader();
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -242,5 +234,17 @@ public class CultureFragment extends Fragment
         checkNetworkConnectionAndRestartLoader();
         // Set visibility of ProgressBar to GONE when refreshing the content
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    /**
+     * This method is used to get the latest news
+     */
+    private void getLatestNews(){
+        // Get the user preferences
+        UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
+        // Make the API URL to show some of the latest news
+        // for culture section
+        mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
+                Constants.SECTION_CULTURE, userPreference);
     }
 }
