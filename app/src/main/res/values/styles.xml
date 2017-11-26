@@ -87,7 +87,7 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <!-- Style for ListView header text -->
+    <!-- Style for ListView header search query text -->
     <style name="list_view_header_section_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
