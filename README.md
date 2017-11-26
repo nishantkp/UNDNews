@@ -17,6 +17,9 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - Swipe list view to refresh
 - ViewHolder
 - Uri builder
+- Gradient drawable
+- Navigation drawer
+- Shared preference
 
 #### New class
 
@@ -78,7 +81,7 @@ https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date
 
 ## UX Design
 
-<img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/home.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/swipe-refresh.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/search-query.png" width="275" height="475"> 
+<img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/top-headlines.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/nav-drawer-main.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/nav-drawer-fashion.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/fashion-top-headlines.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/fashion-search.png" width="275" height="475"> <img src="https://github.com/nishantkp/UNDNews/blob/master/ux-design/user-preference.png" width="275" height="475">
 
 
 ## PROJECT LICENSE
