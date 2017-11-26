@@ -20,6 +20,7 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - Gradient drawable
 - Navigation drawer
 - Shared preference
+- Fragments
 
 #### New class
 
