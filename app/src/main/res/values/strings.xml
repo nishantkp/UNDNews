@@ -73,6 +73,7 @@
     <string name="nav_sports_title">Sports</string>
     <string name="nav_technology_title">Technology</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings for navigation drawer header -->
+    <string name="the_guardian_title">The Guardian</string>
+    <string name="the_guardian_website">www.theguardian.com</string>
 </resources>
