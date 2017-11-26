@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,7 +38,6 @@ public class HomeFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 1;
-    private static String LOG_TAG = HomeFragment.class.getName();
 
     private NewsAdapter mNewsAdapter;
     private ProgressBar mProgressBar;
@@ -175,7 +173,6 @@ public class HomeFragment extends Fragment
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Log.i(LOG_TAG, "API : " + mCorrectUserQueryApi);
         return new NewsLoaderFragment(getContext(), mCorrectUserQueryApi);
     }
 

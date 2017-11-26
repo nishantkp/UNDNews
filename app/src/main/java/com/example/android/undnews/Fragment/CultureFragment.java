@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,11 +21,11 @@ import android.widget.TextView;
 
 import com.example.android.undnews.Data.Constants;
 import com.example.android.undnews.Helper.FragmentHelper;
-import com.example.android.undnews.Object.UserPreference;
-import com.example.android.undnews.Object.News;
 import com.example.android.undnews.NewsActivity;
 import com.example.android.undnews.NewsAdapter;
 import com.example.android.undnews.NewsLoaderFragment;
+import com.example.android.undnews.Object.News;
+import com.example.android.undnews.Object.UserPreference;
 import com.example.android.undnews.R;
 
 import java.util.ArrayList;
@@ -39,7 +38,6 @@ public class CultureFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final int NEWS_LOADER_ID = 1;
-    private static String LOG_TAG = CultureFragment.class.getName();
 
     private NewsAdapter mNewsAdapter;
     private ProgressBar mProgressBar;
@@ -177,7 +175,6 @@ public class CultureFragment extends Fragment
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Log.i(LOG_TAG, "API : " + mCorrectUserQueryApi);
         return new NewsLoaderFragment(getContext(), mCorrectUserQueryApi);
     }
 
