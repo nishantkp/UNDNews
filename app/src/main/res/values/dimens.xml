@@ -8,6 +8,7 @@
 
     <!-- Text size for ListView header -->
     <dimen name="list_header_text">36sp</dimen>
+    <dimen name="list_header_search_query_text">20sp</dimen>
 
     <!-- Height of a single list item in ListView-->
     <dimen name="list_item_height">100dp</dimen>
@@ -15,6 +16,9 @@
     <!-- Default text sizes through out app -->
     <dimen name="primary_text_size">14sp</dimen>
     <dimen name="secondary_text_size">12sp</dimen>
+
+    <!-- Text size for empty view TextBox -->
+    <dimen name="empty_view_text">16sp</dimen>
 
     <!-- News thumbnail height and width -->
     <dimen name="thumbnail_height">80dp</dimen>
