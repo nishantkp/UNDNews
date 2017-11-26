@@ -274,6 +274,7 @@ public class FashionFragment extends Fragment
             searchText.setText(query);
         } else {
             headerText.setVisibility(View.VISIBLE);
+            headerText.setText(getResources().getString(R.string.list_header_title));
             searchText.setText(getResources().getString(R.string.nav_fashion_title));
         }
     }
