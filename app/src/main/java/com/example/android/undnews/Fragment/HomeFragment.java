@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment
 
         // Find the layout for list_header
         mListViewHeader = View.inflate(getContext(), R.layout.list_header, null);
+        updateListHeader(getResources().getString(R.string.list_header_title), false);
 
         // Find the ListView with id list in list.xml
         ListView listView = rootView.findViewById(R.id.list);
@@ -124,6 +125,8 @@ public class HomeFragment extends Fragment
         int id = item.getItemId();
         switch (id) {
             case R.id.home_fragment:
+                // update the list header text
+                updateListHeader(getResources().getString(R.string.list_header_title), false);
                 // When user selects the home icon, make the API URL to show some of the latest news
                 getLatestNews();
                 // clear out the news and restart the loader
@@ -146,6 +149,8 @@ public class HomeFragment extends Fragment
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String userQuery) {
+                // When user submits the query change the list header text to user query
+                updateListHeader(userQuery, true);
                 // Get the user preference
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
@@ -247,6 +252,27 @@ public class HomeFragment extends Fragment
         UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
         // Make the API URL to show some of the latest news
         mCorrectUserQueryApi = FragmentHelper.getTopHeadlines(userPreference);
+    }
+
+    /**
+     * This method is used to update text of list header
+     *
+     * @param query         query submitted by user
+     * @param isSearchQuery true or false depending upon search query
+     *                      if it's top headline value should be false
+     *                      if user performs a search by providing query, it's value should be true
+     */
+    private void updateListHeader(String query, boolean isSearchQuery) {
+        TextView headerText = mListViewHeader.findViewById(R.id.list_header);
+        TextView searchText = mListViewHeader.findViewById(R.id.list_header_section);
+        if (isSearchQuery) {
+            headerText.setVisibility(View.GONE);
+            searchText.setVisibility(View.VISIBLE);
+            searchText.setText(query);
+        } else {
+            headerText.setVisibility(View.VISIBLE);
+            searchText.setVisibility(View.GONE);
+        }
     }
 }
 

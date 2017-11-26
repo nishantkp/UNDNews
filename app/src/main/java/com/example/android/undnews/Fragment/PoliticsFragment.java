@@ -87,6 +87,7 @@ public class PoliticsFragment extends Fragment
 
         // Find the layout for list_header
         mListViewHeader = View.inflate(getContext(), R.layout.list_header, null);
+        updateListHeader(getResources().getString(R.string.list_header_title), false);
 
         // Find the ListView with id list in list.xml
         ListView listView = rootView.findViewById(R.id.list);
@@ -125,6 +126,7 @@ public class PoliticsFragment extends Fragment
         int id = item.getItemId();
         switch (id) {
             case R.id.home_fragment:
+                updateListHeader(getResources().getString(R.string.list_header_title), false);
                 // When user selects the home icon, make the API URL to show some of the latest news
                 // for politics section
                 getLatestNews();
@@ -148,6 +150,7 @@ public class PoliticsFragment extends Fragment
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String userQuery) {
+                updateListHeader(userQuery, true);
                 // Get the user preference
                 UserPreference userPreference = FragmentHelper.getUserPreference(getContext());
                 // Generate the url string as per user preference and user submitted query
@@ -252,5 +255,25 @@ public class PoliticsFragment extends Fragment
         // for politics section
         mCorrectUserQueryApi = FragmentHelper.getSectionTopHeadlines(
                 Constants.SECTION_POLITICS, userPreference);
+    }
+
+    /**
+     * This method is used to update text of list header
+     *
+     * @param query         query submitted by user
+     * @param isSearchQuery true or false depending upon search query
+     *                      if it's top headline value should be false
+     *                      if user performs a search by providing query, it's value should be true
+     */
+    private void updateListHeader(String query, boolean isSearchQuery) {
+        TextView headerText = mListViewHeader.findViewById(R.id.list_header);
+        TextView searchText = mListViewHeader.findViewById(R.id.list_header_section);
+        if (isSearchQuery) {
+            headerText.setVisibility(View.GONE);
+            searchText.setText(query);
+        } else {
+            headerText.setVisibility(View.VISIBLE);
+            searchText.setText(getResources().getString(R.string.nav_politics_title));
+        }
     }
 }

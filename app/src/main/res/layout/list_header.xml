@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -7,7 +8,16 @@
     <TextView
         android:id="@+id/list_header"
         style="@style/list_view_header_style"
-        android:layout_margin="@dimen/header_list_margin"
+        android:layout_marginLeft="@dimen/header_list_margin"
+        android:layout_marginRight="@dimen/header_list_margin"
+        android:layout_marginTop="@dimen/header_list_margin"
         android:background="@drawable/list_header_background"
         android:text="@string/list_header_title" />
+
+    <TextView
+        android:id="@+id/list_header_section"
+        style="@style/list_view_header_section_style"
+        android:layout_margin="@dimen/header_list_margin"
+        android:background="@drawable/list_header_section_background"
+        android:text="@string/nav_life_style_title" />
 </LinearLayout>
