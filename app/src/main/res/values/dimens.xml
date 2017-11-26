@@ -31,4 +31,7 @@
 
     <!-- Margin for header for ListView-->
     <dimen name="header_list_margin">16dp</dimen>
+
+    <!-- Padding for header for ListView-->
+    <dimen name="header_list_padding">16dp</dimen>
 </resources>

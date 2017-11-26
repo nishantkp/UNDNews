@@ -3,21 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/header_list_padding"
+    android:paddingRight="@dimen/header_list_padding"
+    android:paddingTop="@dimen/header_list_padding">
 
     <TextView
         android:id="@+id/list_header"
         style="@style/list_view_header_style"
-        android:layout_marginLeft="@dimen/header_list_margin"
-        android:layout_marginRight="@dimen/header_list_margin"
-        android:layout_marginTop="@dimen/header_list_margin"
+        android:layout_marginBottom="@dimen/header_list_margin"
         android:background="@drawable/list_header_background"
         tools:text="@string/list_header_title" />
 
     <TextView
         android:id="@+id/list_header_section"
         style="@style/list_view_header_section_style"
-        android:layout_margin="@dimen/header_list_margin"
+        android:layout_marginBottom="@dimen/header_list_margin"
         android:background="@drawable/list_header_section_background"
         tools:text="@string/nav_life_style_title" />
 </LinearLayout>
