@@ -45,7 +45,6 @@ public class LifeStyleFragment extends Fragment
     private TextView mEmptyView;
     private String mCorrectUserQueryApi;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private Menu mMenu;
 
     private View mListViewHeader;
 
