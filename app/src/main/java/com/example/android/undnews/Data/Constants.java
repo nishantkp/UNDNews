@@ -1,7 +1,7 @@
 package com.example.android.undnews.Data;
 
 /**
- * Public Constants
+ * Custom class to store public constants
  * Created by Nishant on 11/18/2017.
  */
 
@@ -13,7 +13,7 @@ public class Constants {
     public static final int URL_SUCCESS_RESPONSE_CODE = 200;
     public static final String URL_REQUEST_METHOD = "GET";
 
-    // URL data from building uri
+    // URL data for building uri
     public static final String URL_SCHEME = "https";
     public static final String URL_AUTHORITY = "content.guardianapis.com";
     public static final String URL_PATH = "search";
@@ -30,7 +30,7 @@ public class Constants {
     public static final String URL_API_KEY = "api-key";
     public static final String URL_API_KEY_VALUE = "test";
 
-    // Sections ids
+    // Sections id
     public static final String SECTION_CULTURE = "culture";
     public static final String SECTION_EDUCATION = "education";
     public static final String SECTION_FASHION = "fashion";

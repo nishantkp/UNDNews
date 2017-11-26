@@ -1,7 +1,7 @@
 package com.example.android.undnews.Data;
 
 /**
- * Public Keys
+ * Custom class to store public keys
  * Created by Nishant on 11/18/2017.
  */
 

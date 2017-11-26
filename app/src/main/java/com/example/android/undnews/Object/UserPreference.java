@@ -1,7 +1,7 @@
 package com.example.android.undnews.Object;
 
 /**
- * User preference object
+ * Custom class to store and get user preference
  * Created by Nishant on 11/21/2017.
  */
 
