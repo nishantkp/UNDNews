@@ -1,6 +1,5 @@
 package com.example.android.undnews.Helper;
 
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.example.android.undnews.Data.Constants;
@@ -184,16 +183,13 @@ public class QueryUtils {
                 // Get web Url
                 String webUrl = newsObject.getString(Keys.JSON_NEWS_URL_KEY);
 
-                Drawable newsThumbnailDrawable = null;
-                // Get thumbnail drawable from URL
+                // Get thumbnail URL string
+                String newsThumbnailUrlString = null;
                 if (newsObject.has(Keys.JSON_NEWS_FIELDS_KEY)) {
                     JSONObject field = newsObject.getJSONObject(Keys.JSON_NEWS_FIELDS_KEY);
-                    String newsThumbnailUrlString;
+
                     if (field.has(Keys.JSON_NEWS_THUMBNAIL_KEY)) {
                         newsThumbnailUrlString = field.getString(Keys.JSON_NEWS_THUMBNAIL_KEY);
-                        newsThumbnailDrawable = getDrawable(newsThumbnailUrlString);
-                    } else {
-                        newsThumbnailDrawable = null;
                     }
                 }
 
@@ -209,31 +205,12 @@ public class QueryUtils {
                         }
                     }
                 }
-                newsList.add(new News(newsHeadline, sectionName, authorName, publishedTime, newsThumbnailDrawable, webUrl));
+                newsList.add(new News(newsHeadline, sectionName, authorName, publishedTime, webUrl, newsThumbnailUrlString));
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error creating JSON object : extractFeaturesFromJsonResponse() method", e);
         }
         return newsList;
-    }
-
-    /**
-     * This method is used to get Drawable object from a url string
-     *
-     * @param thumbnailUrl url string of a thumbnail retrieved from JSON response
-     * @return drawable of a thumbnail
-     */
-    private static Drawable getDrawable(String thumbnailUrl) {
-        URL url = generateUrl(thumbnailUrl);
-        Drawable drawable = null;
-
-        try {
-            InputStream inputStream = (InputStream) url.getContent();
-            drawable = Drawable.createFromStream(inputStream, null);
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving content from URL : getDrawable() method", e);
-        }
-        return drawable;
     }
 }
 

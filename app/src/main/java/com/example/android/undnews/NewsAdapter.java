@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.undnews.Object.News;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
     // If the content is for section or not
     private boolean mIsSection;
 
+    // Context of the app
+    private Context mContext;
+
     /**
      * ViewHolder for list item in res/layout/news_list_item.xml
      * View holder that cashes the views so we do not need to use findViewById every time
@@ -49,6 +53,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
     public NewsAdapter(@NonNull Context context, List<News> newsList, boolean isSection) {
         super(context, 0, newsList);
         mIsSection = isSection;
+        mContext = context;
     }
 
     @NonNull
@@ -96,10 +101,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
         viewHolder.headline.setText(currentNewsDetail.getHeadline());
 
         // Set the Drawable object
-        if (currentNewsDetail.getThumbnail() != null) {
+        if (currentNewsDetail.getThumbnailUrl() != null) {
             viewHolder.thumbnail.setVisibility(View.VISIBLE);
             viewHolder.bufferView.setVisibility(View.VISIBLE);
-            viewHolder.thumbnail.setImageDrawable(currentNewsDetail.getThumbnail());
+            // Picasso library to load images into background thread and display it in ImageView
+            Picasso.with(mContext).load(currentNewsDetail.getThumbnailUrl()).into(viewHolder.thumbnail);
         } else {
             // Hide the image view
             viewHolder.thumbnail.setVisibility(View.GONE);
