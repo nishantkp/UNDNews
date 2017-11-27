@@ -89,10 +89,11 @@ https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date
 
 For more information click [here](http://square.github.io/picasso/).
 
+###### Gradle dependencies
 ```gradle
 compile 'com.squareup.picasso:picasso:2.5.2'
 ```
-Adapter Download
+###### Adapter Download
 
 ```java
 @Override public void getView(int position, View convertView, ViewGroup parent) {
