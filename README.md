@@ -21,6 +21,7 @@ The goal is to create a News Feed app which gives a user regularly-updated news 
 - Navigation drawer
 - Shared preference
 - Fragments
+- Piccaso library
 
 #### New class
 
@@ -78,6 +79,31 @@ Well-maintained API which returns information in a JSON format.<br />
 ```
 https://content.guardianapis.com/search?q=debates&api-key=test
 https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test
+```
+
+#### Picasso library
+
+- Handling ImageView recycling and download cancelation in an adapter.
+- Complex image transformations with minimal memory use.
+- Automatic memory and disk caching.
+
+For more information click [here](http://square.github.io/picasso/).
+
+```gradle
+compile 'com.squareup.picasso:picasso:2.5.2'
+```
+Adapter Download
+
+```java
+@Override public void getView(int position, View convertView, ViewGroup parent) {
+  SquaredImageView view = (SquaredImageView) convertView;
+  if (view == null) {
+    view = new SquaredImageView(context);
+  }
+  String url = getItem(position);
+
+  Picasso.with(context).load(url).into(view);
+}
 ```
 
 ## UX Design
