@@ -53,6 +53,16 @@ public class PoliticsFragment extends Fragment
         // Required empty public constructor
     }
 
+    // When user changed the preference from settings and come back to fragment
+    // load the news as per news updated user preference
+    @Override
+    public void onStart() {
+        super.onStart();
+        getLatestNews();
+        updateListHeader(getResources().getString(R.string.list_header_title), false);
+        checkNetworkConnectionAndRestartLoader();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
