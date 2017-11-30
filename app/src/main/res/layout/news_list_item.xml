@@ -48,5 +48,5 @@
     <ImageView
         android:id="@+id/news_thumbnail"
         style="@style/list_item_news_thumbnail_style"
-        android:src="@drawable/place_holder_one" />
+        android:src="@drawable/no_image_placeholder" />
 </RelativeLayout>
