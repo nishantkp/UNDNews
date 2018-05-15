@@ -91,7 +91,7 @@ For more information click [here](http://square.github.io/picasso/).
 
 ###### Gradle dependencies
 ```gradle
-compile 'com.squareup.picasso:picasso:2.5.2'
+implementation 'com.squareup.picasso:picasso:2.71828'
 ```
 ###### Adapter Download
 
